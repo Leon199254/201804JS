@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    Person.prototype.writeJs = function(){console.log("writeJs")};
+    var p1 = new Person("lily",20);
+    var p2 = new Person("lucy",30);
+    //console.log(p1.writeJs == p2.writeJs);
+    //console.log(p1.hasOwnProperty("writeJs"));//检测属性是否是私有的属性
+    //console.log(Object.prototype.isPrototypeOf(p1));//判断某个对象是否在另一个对象的原型链上
+    console.log(p1.toString());//"[object Object]"
+    //propertyIsEnumerable 是否是可枚举 自己扩展
+
+    //封装一个方法 检测是否是公有的属性 若是返回true 不是返回false
+    //1.判断有这个属性 2.判断是否是私有的
+    function hasPublicProperty(obj,attr){
+        return attr in obj && !obj.hasOwnProperty(attr);
+    }
+
+    console.log(hasPublicProperty(p1, "writeJs"));
+
+</script>

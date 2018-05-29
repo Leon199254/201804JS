@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    var name = "lily";
+    var age = 20;
+    var userModel = {
+        name:"lily",
+        age:30,
+        get:function(){
+//            console.log(this.name);
+            this.set()
+            console.log("get")
+        },
+        set:function(){
+            console.log("set")
+        }
+    }
+    userModel.get();
+
+    var loginModel  = {
+        name:"lucy",
+        password:123456,
+        email :function(){
+            userModel.set();
+        }
+    }
+    loginModel.email();
+</script>

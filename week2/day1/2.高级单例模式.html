@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    var userModel = (function(){
+        var name = "lily";
+        var age = 20;
+        function get(){}
+        function set(){console.log("set")}
+//        var obj2 = {t:"",l:""}
+        return {
+         set:set
+        }
+    })()
+    var loginModel = {
+        email:function(){
+            userModel.set();
+        }
+    }
+    loginModel.email();
+</script>

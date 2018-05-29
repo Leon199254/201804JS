@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //所有的函数(类)都是Function类的实例
+    function fn(a,b){
+        return a+b;
+    }
+    var fn = new Function("a","b","return a+b");
+    console.log(fn);
+//  console.dir(Function.prototype);
+    /*fn.aa = function(){console.log("aa")};//静态方法
+    fn.cc  = "cc";
+    fn.aa();*/
+    //console.dir(fn);
+    //检测一个对象是否属于这个类（检测一个对象是否在这个类的原型链上）
+    console.log(Function instanceof Object);
+    //Function.__proto__ == Function.prototype
+    //Function.__proto__.__proto__ == Object.prototype
+
+    console.log(Object instanceof Function);
+   // Object.__proto__ == Function.prototype
+
+
+
+
+
+</script>

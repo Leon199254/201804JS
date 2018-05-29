@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //Object.prototype.toString  "[object Array]"
+   // var ary = [1,2,3];
+    //console.log(ary.toString());//"1,2,3"
+    //console.log(ary.join("+"));//"1+2+3"
+   /* Array.prototype.toString = function(){
+        //this ->实例
+        return this.join("+");
+    };
+    console.log(ary.toString());*/
+    //添加一个方法random
+    var ary = [1,2,3,43,12,56,33,35];
+    //从数组中随机删除n个，把删除的内容放入一个数组返回，原有数组发生改变
+   /*Array.prototype.random = function(n){
+        if(n>this.length){
+            return [];
+        }
+        //this ->ary 实例
+        var ary = [];//放删除的内容
+        for(var i = 0;i<n;i++){//取的次数 n个
+            //1.先取出随机的索引
+           var index =  Math.floor(Math.random()*this.length);
+            //2.通过索引删除数组的这一项
+            var val = this.splice(index,1)[0];
+            //3.删除的这一项放入数组ary中
+            ary.push(val);
+        }
+        return ary;
+    };*/
+
+    Array.prototype.random = function(n){
+        if(n>this.length){
+            return [];
+        }
+        var ary = [];//放删除的内容
+        for(var i = 0;i<n;i++){//取的次数 n个
+            //1.先取出随机的索引
+            var index =  Math.floor(Math.random()*this.length);
+            var val = this[index];
+            this[index] = this[this.length-1];
+            this.length--;
+            ary.push(val);
+        }
+        return ary;
+    };
+    Array.prototype.push = function(num){
+        this[this.length] = num;
+        return this;  //是实现链式调用的关键
+    }
+    //链式调用的写法
+    var res = ary.random(3).push(5).sort(function(a,b){
+        return a-b;
+    })
+    console.log(res);
+
+    //思考题
+
+    Number.prototype.plus = function(n){
+        if(isNaN(n)){
+            return this;
+        }
+         return this+n;
+    };
+    Number.prototype.minus = function(n){
+        if(isNaN(n)){
+            return this;
+        }
+        return this-n;
+    }
+    var res = (5).plus(3).minus(2);
+    console.log(res);
+
+
+    //Number 类 String类 Boolean类 包装类
+   //valueOf() 变回值类型的数据
+
+
+</script>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    /*Person.prototype.writeCss = function(){console.log("writeCss")};
+    Person.prototype.writeJs = function(){};
+    Person.prototype.eat = function(){}
+    Person.prototype.sleep = function(){}*/
+    Person.prototype = {
+        constructor:Person,//需要手动设置constructor指向
+        writeCss:function(){},
+        writeJs:function(){},
+        eat:function() {},
+        sleep:function(){}
+    }
+    var p1 = new Person("lily",20);
+    var p2 = new Person("lucy",18);
+    console.log(p1.constructor);
+    //Array.prototype = {} 这样不行
+    Array.prototype.push = function(){};//一个一个的修改是可以的，但是批量的直接改变原型对象不可以
+    var ary = [1,2,4];
+    ary.push(5);
+    console.log(ary);
+    //对于内置类，所有浏览器不允许批量设置 IE不支持 __proto__属性
+</script>
