@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    function fn(n,m){
+        //console.log(this);
+        console.log(this+n+m);
+    }
+    var obj = {};
+    fn.apply(obj,[10,20]);
+   /* fn.call(obj,10,20);*/
+    //apply方法只能传两个参数，第一个参数改变.前面方法里的this关键字 ，第二个参数必须是数组或者类数组（打包式传给fn），传到fn时还得把数组的每一项拿出来一个一个的赋值给形参
+</script>

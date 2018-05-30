@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    function fn(){
+        //ary.pop()
+        /*Array.prototype.pop = function(){
+            var res = this[this.length-1];
+            this.length--;
+            return res;
+        }*/
+
+        /*var res = arguments[arguments.length-1];
+        arguments.length--;
+        return res;*/
+        //var res = Array.prototype.pop.call(arguments);
+        //console.log(res);
+
+         /*Array.prototype.sort.call(arguments,function(a,b){
+            return a-b;
+        })*/
+         //slice不改变原有数组
+         //类数组转换成数组
+          var res = Array.prototype.slice.call(arguments,0);
+          console.log(res);
+          console.log(arguments);
+
+          Array.prototype.slice = function(){
+              var ary = [];
+              for(var i = 0;i<arguments.length;i++){
+                  ary[i] = arguments[i];
+              }
+              //ary
+
+              return ary;
+          }
+    //类数组通过call间接调用数组的方法，若数组方法是不改变原有数组,slice,concat方法返回值是数组，若数组方法改变原有数组，改变的是类数组
+    }
+    fn(10,20,3,15)
+</script>

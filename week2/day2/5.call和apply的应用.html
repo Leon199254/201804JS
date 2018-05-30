@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //求数组中的最大值和最小值
+    var ary = [10, 2, 3, 15, 22, 45, 7];
+    //方案一：假设法
+    /*var max = ary[0];
+    var min = ary[0];
+    for (var i = 1; i < ary.length; i++) {
+        /!*if(ary[i]>max){
+            max = ary[i];
+        }
+        if(ary[i]<min){
+            min = ary[i];
+        }*!/
+        var cur = ary[i];
+        cur > max ? max = cur : cur < min ? min = cur : null
+    }*/
+    //console.log(max, min);
+
+    //方案二：
+    //console.log(Math.max.apply(null, [10, 2, 3, 15, 22, 45, 7]));
+    //console.log(Math.min.apply(null, [10, 2, 3, 15, 22, 45, 7]));
+
+    //方案三：
+    //console.log(Math.max(eval(ary.toString()))); //7
+    console.log(eval("Math.max(" + ary.toString() + ")"));
+
+
+    //方案四： es6扩展运算符
+   /* console.log(Math.max(...ary));
+    console.log(Math.min(...ary));*/
+
+</script>

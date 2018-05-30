@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //预处理的思想
+    function fn(n,m,x){
+        //console.log(this);
+        console.log(this+n+m+x);
+    }
+    var obj = {};
+    var res = fn.bind(obj,10,20);
+    res(30);
+    //fn里的this关键字改成obj
+    //从第二个参数开始一个一个传给fn
+    //最后return一个小函数 ,啥时需要运行的了，手动运行返回的小函数
+    /*Function.prototype.bind = function(obj,n,m){
+        var that = obj;
+        var arg = [].slice.call(arguments,1);
+        return function(){
+            var arg2 = [].slice.call(arguments,0)
+            var ary = arg.concat(arg2);
+            fn.apply(that,ary);
+        }
+    }*/
+</script>

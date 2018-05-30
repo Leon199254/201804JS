@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //去掉一个最大值和最小值，剩余数求平均数
+   /* function average() {
+        //arguments 类数组
+        // console.log(arguments instanceof Array);//false
+        let max = Math.max.apply(null, arguments);
+        let min = Math.min.apply(null, arguments);
+        let total = null;
+        for(let i = 0;i<arguments.length;i++){
+            total+=arguments[i];
+        }
+       return (total-max-min)/(arguments.length-2);
+    }*/
+
+
+   function average(){
+       //arguments
+       let ary = [];
+       for(let i = 0;i<arguments.length;i++){
+           ary[i] = arguments[i];
+       }
+       ary.sort(function (a,b) {
+           return a-b
+       });
+       ary.shift();
+       ary.pop();
+       //把数组的每一项拿"+"拼接下，拼接后计算下
+       return eval(ary.join("+"))/ary.length
+   }
+
+    console.log(average(30, 20, 50, 33, 17, 2, 8));
+</script>

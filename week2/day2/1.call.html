@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+    //console.dir( Function.prototype)
+    //call,apply,bind 改变方法里的this关键字
+    "use strict";//对所有的代码都采用严格模式
+    function fn(n,m){
+        //"use strict"; 写在这只对方法本身起作用
+       // console.log(this+n+m);
+        console.log(this);
+    }
+    var obj = {};
+    fn.call(obj,10,20);
+    //call方法运行内在机制
+    //1.fn里的this改变obj 2.从第二个参数开始一个个传给fn方法
+    //3.让fn()
+    //正常模式下
+    fn.call();//window
+    fn.call(null);//window
+    fn.call(undefined);//window
+    //严格模式下，传啥就是啥
+    fn.call();//undefined
+    fn.call(null);//null
+    fn.call(undefined);//undefined
+    fn.call(NaN) //NaN
+
+    Function.prototype.call = function(obj){
+        //this 指的是fn
+        //1.this里的this改变成obj
+        //2.从第二个参数开始一个个传给this
+        //3.让this()
+    }
+    fn.call(obj)
+</script>
