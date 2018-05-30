@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //json格式的数据 方便不同语言之间数据的传递
+    //之前用xml,非常麻烦，是各个数据之间约定好的一种规范，不是一种数据类型
+    //是在之前数据类型的基础上新增的一些规范
+    //1.对引用类型的数据只能是对象或数组，不能是函数，Math,Date,RegExp等
+    //2.对于基本类型的数据，若是字符串要用双引号
+    //3.对象中属性名要用双引号包起来，属性值若是字符串也要用双引号包起来
+    //4.数组中成员若是字符串也要用双引号包起来
+    //5.对象或数组最后一项后面不能有,
+
+   /*var obj = {"name":"lily","age":18} //json格式的对象
+   var objStr = '{"name":"lily","age":18}'//json格式的字符串
+   var ary = [{"name":"lily","age":18},{"name":"lily","age":18}] *///json格式的对象
+
+    //window提供两个方法 用来转换json格式的字符串和json格式的对象
+    //JSON.parse()  //JSON格式的字符串转换成JSON格式的对象
+    //JSON.stringify()//一个对象转换成JSON格式的字符串
+
+//    var obj = {name:'lily',age:18};
+//    console.log(JSON.stringify(obj));
+    var objStr = '{"name":"lily","age":18}';
+    console.log(JSON.parse(objStr));
+</script>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    var ary = [{name:"明建平",age:25},{name:"金鑫",age:24},{name:"许静",age:18}];
+    //ary按照年龄排序或按照姓名排序
+    ary.sort(function(a,b){
+        //a前一项   b后一项
+        //return a.age-b.age
+        return a.name.localeCompare(b.name,"zh"); //默认按照unicode编码进行排序，加参数zh就按照字母顺序进行排序
+    })
+
+    console.log(ary);
+</script>

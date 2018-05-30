@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="list"></ul>
+</body>
+</html>
+<script src="utils.js"></script>
+<script>
+    //ajax 在不刷新整个页面的基础上，实现局部刷新
+    //ajax四步骤：
+    //1.创建一个ajax对象
+    var data = null;
+    var xhr = new XMLHttpRequest();
+    //2.打开一个链接地址,发起请求
+    //请求的方式：get，post ,put,delete...
+    //true异步（默认）  false 同步
+    xhr.open("get","data.json",false);
+    //3.监听请求的状态
+    //请求的状态码(xhr.readyState)和网络状态码（2开头的三位数）
+    // 0 UNSEND 未发送
+    // 1 OPENED 发起请求
+    // 2 HEADERS_RECEIVED 获取到响应头信息
+    // 3 LOADING 正在请求中
+    // 4 DONE  请求完成
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState==4 &&/^2\d{2}$/.test(xhr.status)){
+            //xhr.responseText json格式的字符串
+            data = utils.toJSON(xhr.responseText); //JSON格式的对象
+
+        }
+    }
+
+    //4.发送请求的数据
+    xhr.send(null);
+
+    //动态绑定数据
+    //1.字符串拼接的方式
+    var oUl = document.getElementById("list");
+   /* var str = "";
+    for(var i = 0;i<data.length;i++){//遍历数组拿到每条数据
+        //var obj = data[i];
+        str+="<li>" + data[i].name  + "</li>"
+     }
+     oUl.innerHTML  = str;*/
+
+    //2.es6模板字符串 变量${} ``
+    let str = ``;
+    for(let i = 0;i<data.length;i++){
+        str+=`<li>${data[i].name}</li>`;
+    }
+    oUl.innerHTML = str;
+
+
+
+</script>

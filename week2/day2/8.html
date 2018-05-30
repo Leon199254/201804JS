@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    function average(){
+        /*var args = arguments;
+        [].sort.call(args,function(a,b){
+            return a-b;
+        });
+        [].pop.call(args);
+        [].shift.call(args);
+      return   eval([].join.call(args,"+"))/args.length*/
+
+        //把类数组转换成数组
+        var ary = [].slice.call(arguments,0);
+        ary.sort(function(a,b){
+            return a-b;
+        })
+        ary.pop();
+        ary.shift();
+        return eval(ary.join("+"))/ary.length;
+    }
+
+    console.log(average(10, 30, 25, 15, 2, 5, 7));
+</script>
