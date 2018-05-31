@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="list">
+    <li>80</li>
+    <li>65</li>
+    <li>34</li>
+    <li>67</li>
+</ul>
+</body>
+</html>
+<script>
+    //DOM映射：js获取的元素/集合跟页面上的标签或容器是一一映射的关系
+//    let oUl = document.getElementById("list");
+//    let oLis = oUl.getElementsByTagName("li");
+//    oLis[0].style.backgroundColor = "red";
+//    console.log(oLis.length);//4
+//    let oLi = document.createElement("li");
+//    oUl.appendChild(oLi);
+//    console.log(oLis.length);//5
+
+    let oUl = document.getElementById("list");
+    let oLis = document.querySelectorAll("#list>li"); //staticNodeList 静态节点
+    console.log(oLis.length);
+    let oLi = document.createElement("li");
+    oUl.appendChild(oLi);
+    oLis = document.querySelectorAll("#list>li");
+    console.log(oLis.length);
+    //jquery获取的元素没有DOM映射的关系
+    //有DOM映射的，当页面结构发生改变时，若之前获取过元素集合，不需要重新再获取元素集合， 而若没有DOM映射的，当结构发生改变时，需要重新获取元素集合
+
+</script>

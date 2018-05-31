@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //回调函数：把一个函数的定义作为参数传给另一个函数(异步)
+    //数组的方法
+    //es5迭代方法 forEach,map,some ,every ,filter, reduce,reduceRight
+    //es6 find findIndex
+
+    /*function b(){
+        console.log("b");
+    }*/
+    function a(fn){
+        var ary = [];
+        var res= fn();
+        ary.push(res);
+        return ary;
+    }
+    a(function(){console.log("b")});
+
+
+    let ary = [10,20,30,15,25];
+    let obj = {};
+    //forEach()参数：第一个是回调函数，第二个参数用来改变回调函数里的this关键字，若没传第二个参数，回调函数里的this是window
+    /*ary.forEach(function(){
+      //item 数组的每一项
+      //index 每一项的索引
+      // ary  原数组
+      //console.log(item,index);
+        console.log(arguments[0],arguments[1])
+    },obj)*/
+    //forEach和map都能拿到数组每一项及其索引 ，区别在于forEach没有返回值 map有返回值
+    var res = ary.map(function(item,index,ary){
+       return item+10
+    },obj)
+    //map方法里定义新的数组，新数组存每次回调函数运行完后的返回值，最后把新数组作为map方法的返回值
+    console.log(ary);
+    console.log(res);
+
+
+</script>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    let ary = [10,2,3,4,5];
+   /* let res = ary.map(function(item,index){
+        return item+2;
+    })
+    console.log(res);*/
+
+    Array.prototype.map = function(callback,context){
+        context = context ||window;//第二个参数是否传
+        let ary = [];//用来存放回调函数的返回值
+        //如何控制回调函数执行的次数 --数组的长度 this.length
+       for(let i = 0;i<this.length;i++){//控制着回调函数执行的次数
+           //每遍历一次，callback就得执行一次，保存callback的返回值
+           let res = callback.call(context,this[i],i,this)
+           ary.push(res);
+       }
+       return ary;
+
+    }
+    let obj = {};
+    let res = ary.map(function(item,index){
+        console.log(this);
+        return item+2
+    },obj)
+    console.log(res);
+
+</script>

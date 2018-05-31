@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //some true/false  只要一个为true则返回为true
+    /*let ary = [1,2,3,4,5,6];*/
+    /*let res = ary.some(function(item,index,ary){
+        console.log(item);
+        return item>1;
+    })
+    console.log(res);*/
+
+    //every  true/false  只要有一个为false则返回为false
+    /*let res = ary.every(function(item){
+        console.log(item);
+        return item<2
+    })
+    console.log(res);*/
+
+    //find 返回满足条件的这一项,找到满足条件的，find方法中止运行 ，没有找到则返回undefined
+    /*let res = ary.find((item,index,ary)=>{
+        return item > 3
+    })
+    console.log(res);*/
+
+    /*//findIndex 返回满足条件这一项的索引  没有满足条件的就返回-1
+    let res = ary.findIndex((item,index,ary)=>{
+        return item > 3
+    })
+    console.log(res);*/
+
+    //filter 筛选数组 满足条件的留下，不满足的去掉 返回的都是新数组
+    /*let ary = [1,2,3,4,5,6];
+    let res = ary.filter((item,index,ary)=>{
+        return item<4
+    })
+    console.log(ary);
+    console.log(res);*/
+
+    //reduce 和reduceRight  数组每一项依次累加，最终得出累加值
+    let ary = [1,2,3,4,5,6];
+    //reduce 第一个回调函数 第二个参数表示prev初始值，若第二个参数没有传，prev初始值是第一项
+    let res = ary.reduce(function(prev,item) {
+        //prev 累计项  item 当前项(依次取数组的成员)
+        return prev + item;
+    },10);
+    /*prev   item   prev+item
+     1      2       3
+     3      3       6
+     6      4       10
+     10     5       15
+     15     6        21*/
+
+
+   /* prev   item  prev+item
+    10      1       11
+    11      2       13
+    13      3       16
+    16      4       20
+    20      5       25
+    25      6       31*/
+
+
+    console.log(res);
+
+
+</script>

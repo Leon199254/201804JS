@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="list">
+    <li>80</li>
+    <li>65</li>
+    <li>34</li>
+    <li>67</li>
+</ul>
+</body>
+</html>
+<script>
+    //页面中的li按照每个li的内容进行排序
+    //1.先拿到所有的li,类数组转换成数组
+    let oUl = document.getElementById("list");
+    let oLis = oUl.getElementsByTagName("li");
+    let aLis = [].slice.call(oLis);
+    console.log(aLis);
+    //2.让数组里的li按照每个li的内容进行排序
+    aLis.sort(function(a,b){
+        return a.innerHTML - b.innerHTML;
+    })
+    //3.把数组中排序完的li重新添加到页面上
+    for(let i = 0;i<aLis.length;i++){
+        oUl.appendChild(aLis[i]) //若不存在则表示添加，若存在则移动位置
+    }
+
+</script>
