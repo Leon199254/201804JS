@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+//    console.dir(RegExp.prototype);
+//字面量定义的方式
+    //\d
+    //var reg = /\d/;//字符串有0~9之间的一个数字
+    //var reg = /^\d/;//字符串以数字开头
+
+    //量词
+    //var reg = /^\d{3}$/; //严格的匹配
+
+    //\w
+    //var reg = /^\w\d+$/;
+
+    //.
+    //var reg = /^\.$/;//\.表示.本身
+
+    //\b
+    //var reg = /\w+\b/; //#&%空格或者结尾都算是单词的边界
+    //var reg = /\bh/
+    //var str = "world#hello";
+
+    //\s
+    /*var reg = / +/;
+    var str = "asd   sdfsdf"*/
+
+    //[] 只能表示一个字符
+    //var reg = /^[!-/]$/ //ascii码表里连续的字符
+    //var str = "!"
+
+    //var reg = /^[\u4e00-\u9fa5]{2,5}$/;//十六进制表示特殊的字符或者中文字符
+    /*var reg = /^[\u0041-\u0050]$/;//不满四位在前面补零
+    console.log(reg.test("Z"));*/
+
+    //匹配年龄 18-65 把两位数拆开来表示
+    //18-19
+    //20-59
+    //60-65
+    var reg = /^(1[8-9]|[2-5]\d|6[0-5])$/;
+    console.log(reg.test("35"));
+
+    //[] []里的字符表示原字符本身的含义 \d\w除外
+    var reg = /^[.?*#\d_]$/;
+    console.log(reg.test("_"));
+
+
+    //()分组的作用
+    var reg = /^18|19$/;//以18开头或19结尾
+    var reg = /^(18|19)$/;//只能是18或19
+    //console.log(reg.test("181"));
+
+    //修饰符
+    var reg = /[a-z]+/gi;
+    var str = "zhufeng2018Peixun";
+    //reg.exec(str);
+    console.log(str.match(reg));//把所有匹配的内容都捕获到
+
+</script>

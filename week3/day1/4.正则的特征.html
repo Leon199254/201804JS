@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //贪婪(能多拿决不少拿)
+   /* var reg = /\d+?/;//？表示非贪婪匹配 能少拿决不多拿
+    var str = "2018zhufeng2019";
+    console.log(reg.exec(str));*/
+
+   //懒惰 加g解决懒惰性
+    var reg = /\d+/; //加g后reg.global值为true 若没加值为false
+    var str = "2018zhufeng2019";
+    //reg.lastIndex 决定了查找的起始位置 默认是0开始
+    console.log(reg.lastIndex);//0
+    console.log(reg.exec(str));//2018
+    console.log(reg.lastIndex);//匹配字符的后一个字符的索引 4
+    console.log(reg.exec(str));//2019
+    console.log(reg.lastIndex); //15
+    console.log(reg.exec(str));//null
+    console.log(reg.lastIndex);//0
+    console.dir(reg);
+
+    console.log(str.match(reg));
+    //exec方法的返回值 数组有三项：第一项匹配的内容 第二项：匹配内容的第一个字符的索引 第三项：原字符串
+    //若正则表达式里若没有加g ,exec方法和match方法一样
+    //match方法若加g后，会把匹配的内容一次性放入数组中返回
+
+    //实现功能：把所有匹配的内容放入数组中返回
+    RegExp.prototype.allExec = function(str){
+        //1.判断是否加g ,若没有加则把返回值里第一项匹配的内容返回
+        //this 代表定义的正则
+        if(!this.global) return this.exec(str)[0];
+        let ary = [];
+        let res = null;
+        while( res = this.exec(str)){
+            ary.push(res[0])
+        }
+        return ary;
+    };
+    console.log(reg.allExec(str));
+
+
+    /* var reg = /[+-]?(?:[1-9]\d+)(?:\.\d+)?/; //只匹配不捕获
+     console.log(reg.exec("2018.19zhufeng2019"));*/
+
+
+
+
+
+    //面试题
+    var str = "555abc123";
+    var str1 = "bcd789";
+    var reg = /\d+/g;
+    console.log(reg.exec(str));//[555,0]
+    console.log(reg.exec(str));//[123,6]
+    //reg.lastIndex //9
+    console.log(reg.exec(str1));// null
+    //reg.lastIndex //0
+    console.log(reg.exec(str1));// [789,3]
+</script>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    /*var reg = /\w+/g;
+    var str = "www.zhufengpeixun.cn";
+    //str = str.replace("cn","com");//只能替换一次
+    str = str.replace(reg,"6")//6.6.6 替换的次数 = 匹配的次数
+    console.log(str);*/
+
+
+    var reg = /(\d)+/g;
+    var str = "11aa22bb33cc";
+    //回调函数 1.执行次数：匹配的次数   2.返回值  3.参数
+    str = str.replace(reg,function($0,$1){
+        //console.log(arguments);
+        //没有加分组有三个参数
+        //第一个参数：匹配的内容 $0
+        //第二个参数：匹配内容的起始索引 $1
+        //第三个参数：原字符串  $2
+       // console.log($0,$1,$2);
+
+        //加了分组后参数的变化
+        //第一个参数：匹配的内容 $0
+        //从第二个参数开始是分组的内容
+        //倒数第二个 匹配内容的起始索引
+        //倒数第一个 原字符串
+        console.log($0,$1);
+        return $0*2; //替换匹配的内容
+    })
+    //console.log(str);
+
+    //第一次：22aa22bb33cc
+    //第二次: 22aa44bb33cc
+    //第三次： 22aa44bb66cc
+
+
+    /*var reg = /(\w).(\w).(\w)/g;
+    var str ="a.b.c";
+    str.replace(reg,"$3.$3.$3")*/;//$1~$99
+</script>
