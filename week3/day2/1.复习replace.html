@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    let str = "11aa22bb33cc";
+    let reg = /([a-zA-Z])+/g;
+    str = str.replace(reg,($0,$1,index,str)=>{
+        //$0 匹配的内容 $1 匹配内容的起始字符索引 $2原字符串
+        //若正则有分组，则从第二个参数开始是第几个分组的内容
+        return $0.toUpperCase();//替换匹配的内容
+    });
+    console.log(str);
+</script>

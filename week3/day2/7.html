@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    var str = "2017-08-10 15:30:45";
+    var tempStr = "{0}年{1}月{2}日 {3}时{4}分{5}秒";
+    //->2017年08月10日 15时30分45秒
+    String.prototype.format = function(template){
+        //this
+        let reg  = /([^- :]+)/g;
+        let arr = this.match(reg);
+        arr.forEach(function (item,index) {
+            template = template.replace(/\{(\d)\}/,item);
+
+        });
+        return template
+    };
+    console.log(str.format(tempStr));
+</script>

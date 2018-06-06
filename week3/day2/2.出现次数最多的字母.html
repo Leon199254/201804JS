@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //统计出现最多的字母和次数 (两种方法)
+    let str = "addfdffbdcccghhhheee";
+    //利用对象不重名的特征 把字符串的每个字符保存在对象
+    //得出每个字符串出现的次数
+    let obj = {};
+    for(let i = 0;i<str.length;i++){
+        let cur = str[i];
+        if(obj[cur]){//判断对象中是否有这个字符
+            obj[cur]++;//若有则次数再增加一次
+        }else{
+            obj[cur] = 1;//第一次出现
+        }
+    }
+    // console.log(obj); 保存了字母及其出现的次数
+    //{a: 1, d: 4, f: 3, b: 1, c: 3, …}
+    let maxStr = "";//假设 出现次数最多的字母
+    let max = 0;//假设出现的最多的次数保存在max变量中
+    for(let attr in obj){
+        //obj[attr]
+        if(obj[attr]>max){
+            max = obj[attr];
+            maxStr = attr;
+        }else if(obj[attr]===max){
+            maxStr+=","+attr;
+        }
+    }
+    console.log(maxStr,max);
+</script>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //排除法
+    //去掉标签，拿到文本部分
+    let str = "<div class='aaa' id='bbb'>明建平</div><p>好好学习,天天向上</p>";
+    //str="明建平好好学习,天天向上"
+    let reg = /<[^<>]+>/g;
+    str = str.replace(reg,"");
+    console.log(str);
+
+</script>

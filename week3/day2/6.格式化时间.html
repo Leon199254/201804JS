@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //格式化时间->时间按照指定的格式拼接成新的字符串
+    let str = "2017-08-10 15:30:45";
+    let tempStr = "{0}年{1}月{2}日";
+    //->2017年08月10日 15时30分45秒
+    String.prototype.format = function(tempStr){
+        tempStr = tempStr || "{0}年{1}月{2}日 {3}时{4}分{5}秒";
+        //this
+        //1.将str中的日期和时间拿出来放入数组中
+        let ary = this.match(/\d+/g);
+        //let ary = this.split(/[- :]/g); //按照指定字符将字符串分割成数组的每一项
+        //2.正则匹配tempStr中的模板部分
+        let reg = /\{(\d)\}/g;
+        //3.通过模板中的索引 获取数组中对应的值，然后替换tempStr中模板部分
+        tempStr = tempStr.replace(reg,($0,$1)=>{
+            return ary[$1];
+        })
+        return tempStr;
+
+    }
+    console.log(str.format(tempStr));
+</script>

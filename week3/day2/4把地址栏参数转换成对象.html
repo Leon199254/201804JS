@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //获取地址栏中的参数并放入对象中
+    let str = "http://www.baidu.com?id=557131028857&name=zhufeng&age=8";
+    //{id：557131028857,name:"zhufeng",age:8}
+    //正则匹配每个参数 把=前面的作为对象的属性名，=后面的作为对象的属性值
+    //排除法
+    let reg = /([^?&=]+)=([^?&=]+)/g;
+    let obj = {};
+    str.replace(reg,($0,$1,$2)=>{
+        //不需要替换匹配的内容 回调函数里不需要写return
+        obj[$1] = $2;
+    })
+    console.log(obj);
+
+    //思考题 格式化代码
+for(var i = 0;i<10;i++){var cur = i;}
+if(i>10){}
+var a = 10;
+
+
+</script>

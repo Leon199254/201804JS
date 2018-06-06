@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    let str = "addfdffbdcccghhhheee";
+    //1.排序下 2.得出每个字母及其出现的次数 3.假设法求出出现次数最多的字母和对应的次数
+    //a,b,c,c,c,d,d,d,d,e,e,e,f,f,f,g,h,h,h,h
+    //let ary = Array.from(str);
+    //let ary = [...arg];
+    //let ary = [].slice.call(str);
+     let ary = str.split("");
+    ary.sort((a,b)=>{
+        return a.localeCompare(b);
+    })
+    str = ary.join("");
+    let reg = /(\w)\1+/g; //匹配了连续一样的字符
+    let max = 0;
+    let maxStr = "";
+    str.replace(reg, ($0, $1) => {
+        if ($0.length > max){
+            max = $0.length;
+            maxStr = $1;
+        } else if (max === $0.length) {
+            maxStr += "," + $1;
+        }
+    });
+    console.log(max, maxStr);
+
+
+    //反向引用 ()
+    /* let str = "wowo";
+     let reg = /(\w)(\w)\1\2/; //\2和第二个分组匹配的字符一样  \1和第一个分组匹配的字符一样
+     console.log(reg.test(str));*/
+
+    /*let reg = /(\w)\1+/g;
+    let str = "aaaaaaaaaaazzccccc";
+     //console.log(reg.test(str));
+     str = str.replace(reg, ($0,$1)=>{
+         return $1;
+     })
+     console.log(str);
+ */
+</script>
