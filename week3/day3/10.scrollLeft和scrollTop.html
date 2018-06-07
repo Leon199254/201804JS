@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #div1{
+            width: 200px;
+            height: 200px;
+            border:10px solid pink;
+            overflow: hidden;
+            margin:0 auto;
+
+        }
+
+    </style>
+</head>
+<body>
+<div id="div1">5年来，上合组织各个成员国在政治上不断增强互信、在经济上不断深化务实合作，在民间交流中人文纽带越拉越紧，逐步形成了安全、经济与人文并重，官方与民间并举的全面合作机制。这是地区一体化进程的必然趋势，也是上海合作组织未来发展的大方向。5年来，上合组织各个成员国在政治上不断增强互信、在经济上不断深化务实合作，在民间交流中人文纽带越拉越紧，逐步形成了安全、经济与人文并重，官方与民间并举的全面合作机制。这是地区一体化进程的必然趋势，也是上海合作组织未来发展的大方向。</div>
+
+</body>
+</html>
+<script>
+    var oDiv = document.getElementById("div1");
+    var h = null;
+   /* window.setInterval(function(){
+        h =  oDiv.scrollTop++;
+        if(h === oDiv.scrollTop){//已经到底部了
+            oDiv.scrollTop = 0;
+        }
+    },20)*/
+     var timer = null;
+    function fn(){
+        clearTimeout(timer);//把上一个定时器清除掉
+        h =  oDiv.scrollTop++;
+        if(h === oDiv.scrollTop){//已经到底部了
+            oDiv.scrollTop = 0;
+        }
+        timer = window.setTimeout(arguments.callee,10)
+    }
+    fn();
+
+</script>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding:0;
+        }
+        #box{
+            width: 800px;
+            height: 200px;
+            border:1px dashed orange;
+            margin:  30px  auto;
+          /*  overflow-y: hidden;
+            overflow-x:auto;*/
+            overflow: hidden;
+        }
+        #box ul{
+            height: 200px;
+            list-style: none;
+        }
+        #box li{
+            float: left;
+        }
+        #box li img{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <ul id="list">
+            <li><img src="img/1.jpg" ></li>
+            <li><img src="img/2.jpg" ></li>
+            <li><img src="img/3.jpg" ></li>
+            <li><img src="img/4.jpg" ></li>
+        </ul>
+    </div>
+</body>
+</html>
+<script>
+    var oBox = document.getElementById("box");
+    var oUl = document.getElementById("list");
+    //1.克隆ul标签的内容
+    oUl.innerHTML+=oUl.innerHTML;
+    //2.重新计算ul标签的宽度
+    var oLis = oUl.getElementsByTagName("li");
+    oUl.style.width = oLis.length*oLis[0].offsetWidth +"px";
+    window.setInterval(function(){
+        oBox.scrollLeft++;
+        //当卷出去的宽度 = box宽度(ul宽度的一半)时 (滚动条走到末尾位置) 让滚动条回到一开始的位置
+        //滚动条到末尾位置显示的内容跟滚动条到起始位置显示内容一样，这样就能实现无缝滚动
+        if(oBox.scrollLeft === oBox.clientWidth){
+            oBox.scrollLeft = 0;
+        }
+    },10)
+</script>

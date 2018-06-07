@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            color: #000;
+            font-size: 20px;
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">珠峰</div>
+</body>
+</html>
+<script>
+    /**
+     *
+     * @param ele 操作的元素
+     * @param attr css属性名
+     * @return res  css属性值
+     */
+    function getCss(ele,attr){
+        var res = null;//保存css属性值
+        try{
+           res = window.getComputedStyle(ele,null)[attr]
+        }catch(e){
+           res = ele.currentStyle[attr];
+        }
+        return res;
+    }
+    var oDiv = document.getElementById("div1");
+    console.log(getCss(oDiv, "fontSize"));
+</script>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #div1{
+            width: 100px;
+        }
+    </style>
+
+</head>
+<body>
+<div id="div1">珠峰</div>
+</body>
+</html>
+<script src="utils.js"></script>
+<script>
+    var oDiv =document.getElementById("div1");
+    //根据参数不同，css方法里调用不同方法
+    console.log(utils.css(oDiv, "width"));
+   /* utils.css(oDiv,"height",100);*/
+    utils.css(oDiv,{
+        width:200,
+        height:100,
+        background:"red",
+        opacity:0.1
+    })
+</script>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            color: #000;
+            font-size: 20px;
+            background: orange;
+        }
+        #div1:before{
+            content: "我是添加到内容前面的";
+            color: palegreen;
+            background: yellow;
+        }
+        #div1:after{
+            content: "我是添加到内容后面";
+            font-size: 20px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">珠峰</div>
+</body>
+</html>
+<script>
+    var oDiv = document.getElementById("div1");
+    //->标准浏览器下
+    //let res = window.getComputedStyle(oDiv,null);//包含所有css属性的对象
+    //->获取伪元素css属性值
+    //console.log(window.getComputedStyle(oDiv, "after").fontSize);
+    //->IE8及以下浏览器
+    console.dir(oDiv.currentStyle['width']);
+</script>

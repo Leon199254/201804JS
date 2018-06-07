@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #div1 {
+            width : 100px;
+            height : 100px;
+            color : #000;
+            font-size: 20px;
+            background: orange;
+            opacity: 0.5;
+           /* font-weight: bold;*/
+            font-style: normal;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">珠峰</div>
+</body>
+</html>
+<script>
+    function getCss(ele, attr) {
+        var res = null;
+        if (window.getComputedStyle) {
+            res = window.getComputedStyle(ele, null)[attr];
+        } else {
+            res = ele.currentStyle[attr];
+        }
+        //res做处理，写个正则匹配下，看是否是数值或数值+单位，若是则转换成数类型提取数值部分
+        var reg = /^[+-]?(\d|[1-9]\d+)(\.\d+)?(px|rem|em|pt)?$/;
+        res = reg.test(res) ? parseFloat(res) : res;
+        return res;
+    }
+    var oDiv = document.getElementById("div1");
+    console.log(getCss(oDiv, "width"));
+    console.log(getCss(oDiv, "color"));
+    console.log(getCss(oDiv, "fontStyle"));
+</script>

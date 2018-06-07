@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+
+        div {
+            border: 10px solid #000;
+            margin: 20px;
+        }
+
+        #outer {
+            width: 300px;
+            height: 300px;
+        }
+
+        #inner {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="outer">outer
+    <div id="inner">inner</div>
+</div>
+</body>
+</html>
+<script>
+    //当前元素外边框到参照物内边框的距离
+    let inner = document.getElementById("inner");
+    //排除这两种情况 一种：ele就是body p就为null 第二种ele的参照物是body p是body
+    function offset(ele) {
+        let l = ele.offsetLeft;
+        let t = ele.offsetTop;
+        let p = ele.offsetParent;
+        while (p && p !== document.body) {
+            //除了要累加上偏移量，还得累加参照物的边框
+            l += p.offsetLeft + p.clientLeft;
+            t += p.offsetTop + p.clientTop;
+            p = p.offsetParent
+        }
+        return {
+            l,
+            t
+        }
+    }
+    console.log(offset(inner).l);
+
+</script>

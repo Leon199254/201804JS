@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div id="div1">珠峰</div>
+</body>
+</html>
+<script src="utils.js"></script>
+<script>
+    /*function setGroup(ele,obj){
+        if(!Object.prototype.toString.call(obj)==="[object Object]") return;
+        for(var attr in obj){
+            if(obj.hasOwnProperty(attr)){ //只有私有的属性才去操作
+               utils.setCss(ele,attr,obj[attr]);
+            }
+        }
+    }*/
+    var oDiv = document.getElementById("div1");
+    utils.setGroup(oDiv,{
+        width:100,
+        height:100,
+        background:"red",
+        fontSize:"40px"
+    })
+
+</script>
