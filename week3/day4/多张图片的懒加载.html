@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width: 100%;
+            height: 1000px;
+            text-align: center;
+        }
+        img{
+            margin-top: 600px;
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <img src="./img/default.jpg" trueSrc="img/2.jpg" alt="">
+    </div>
+</body>
+</html>
+<script src="js/utils.js"></script>
+<script>
+    /*图片懒加载
+    * 就是当前屏幕没有显示到的图片先不加在，只加载当前屏幕下的图片；
+    * 1、在移动端比较节省客户的流量
+    * 2、可以加快网站打开的速度
+    * 懒加载在移动端应用比较广泛；
+    *
+    * 思路： 就是判断当 图片的尾部露出来之后把图片显示成正式图片（就是把当前的src改成正式的地址）
+    * 1、怎么判断图片的尾部是否露出来？
+    * 就是我们去拿图片距离body顶部的距离+图片的高度  去跟  当前屏划过的距离+浏览器屏幕的高度比较；  如果前部分的值大于后部分的值 证明图片的尾巴还没有出来，反之证明图片的尾部已经露出来了
+    * */
+    var img = document.getElementsByTagName('img')[0];
+    //1、去拿图片尾部到body顶部的距离
+    var imgTop = utils.offset(img).top + img.offsetHeight;
+
+    //2、当前滚动卷过去的高度 加上 当前浏览器的高度
+    var tempTop = utils.win('scrollTop') + utils.win('clientHeight');
+
+    console.log(imgTop,tempTop)
+    // oDiv.onclick = function(){}
+    // window.onscroll = function () {//监听滚动事件
+    //     console.log(222222);
+    // };
+
+    window.onscroll = function () {//在用户滚动页面的时候去查看判断条件是否成立
+        //当没有这个loaded属性时，每次滚动都会触发fadeIn函数，触发一次就闪一次
+        //为了避免这种情况，我们设置这个属性，当他第一次加载好后，之后再滚动就不再加载该图片了，也就避免了下面的fadeIn函数执行
+        if(img.loaded){
+            return;
+        }
+        // imgTop = utils.offset(img).top + img.offsetHeight;
+        tempTop = utils.win('scrollTop') + utils.win('clientHeight');
+        if(imgTop <= tempTop){//证明图片的尾巴露出来了
+            // img.loaded = true;
+            // var trueSrc = img.getAttribute('trueSrc');
+            // img.src = trueSrc;//这么写是直接从远程服务器去拿相应的图片，他要经历一个比较长的过程
+            // fadeIn(img);
+            var trueSrc = img.getAttribute('trueSrc');//获取真正的地址
+            var tempImg = document.createElement('img');//创建一个img标签
+            tempImg.src = trueSrc;//把创建的img的src换成真正的地址
+            //onload 事件是浏览器自带的  表示前边的元素已经加载完成
+            tempImg.onload = function () {//代表远程地址的图片已经加载完毕
+                img.src = trueSrc;//真正的图片从缓存区拿图片
+                img.loaded = true;
+                fadeIn(img);
+            };
+            tempImg = null;
+        }
+    };
+
+    function fadeIn(ele) {
+        utils.css(ele,'opacity',0);
+        var opa = 0;
+        var timer = window.setInterval(function () {
+            opa+=0.1;
+            utils.css(ele,'opacity',opa);
+            if(opa >= 1){
+                window.clearInterval(timer)
+            }
+        },10)
+    }
+
+
+</script>

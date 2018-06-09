@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width: 100%;
+            height: 1000px;
+            text-align: center;
+        }
+        img{
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <img src="./img/default.jpg" trueSrc="img/2.jpg" alt="">
+    <img src="./img/default.jpg" trueSrc="img/2.jpg" alt="">
+    <img src="./img/default.jpg" trueSrc="img/2.jpg" alt="">
+    <img src="./img/default.jpg" trueSrc="img/2.jpg" alt="">
+    <img src="./img/default.jpg" trueSrc="img/2.jpg" alt="">
+    <img src="./img/default.jpg" trueSrc="img/2.jpg" alt="">
+    <img src="./img/default.jpg" trueSrc="img/2.jpg" alt="">
+    <img src="./img/default.jpg" trueSrc="img/2.jpg" alt="">
+    <img src="./img/default.jpg" trueSrc="img/2.jpg" alt="">
+    <img src="./img/default.jpg" trueSrc="img/2.jpg" alt="">
+    <img src="./img/default.jpg" trueSrc="img/2.jpg" alt="">
+    <img src="./img/default.jpg" trueSrc="img/2.jpg" alt="">
+    <img src="./img/default.jpg" trueSrc="img/2.jpg" alt="">
+    <img src="./img/default.jpg" trueSrc="img/2.jpg" alt="">
+    <img src="./img/default.jpg" trueSrc="img/2.jpg" alt="">
+    <img src="./img/default.jpg" trueSrc="img/2.jpg" alt="">
+</div>
+</body>
+</html>
+<script src="js/utils.js"></script>
+<script>
+    var imgs = document.getElementsByTagName('img');
+    //目的是为了只计算一次每个图片到body的距离
+    for(var i = 0; i < imgs.length ; i++){
+        var imgTop = utils.offset(imgs[i]).top + imgs[i].offsetHeight;
+        imgs[i].imgTop = imgTop;
+    }
+    // var imgTop = utils.offset(img).top + img.offsetHeight;
+    var tempTop = utils.win('scrollTop') + utils.win('clientHeight');
+    function loadImg(img){
+        if(img.loaded){
+            return;
+        }
+        var tempTop = utils.win('scrollTop') + utils.win('clientHeight');
+        if(img.imgTop <= tempTop){
+            var trueSrc = img.getAttribute('trueSrc');
+            var tempImg = document.createElement('img');
+            tempImg.src = trueSrc;
+            tempImg.onload = function () {
+                img.src = trueSrc;
+                img.loaded = true;
+                fadeIn(img);
+            };
+            tempImg = null;
+        }
+    }
+    function loadAll(imgs) {
+        for(var j = 0; j < imgs.length ; j++){
+            loadImg(imgs[j]);
+        }
+    }
+    loadAll(imgs);//这行是为了刚进页面时，把当前页面的图片也加载出来
+    window.onscroll = function () {
+        loadAll(imgs);
+    };
+
+    function fadeIn(ele) {
+        utils.css(ele,'opacity',0);
+        var opa = 0;
+        var timer = window.setInterval(function () {
+            if(opa >= 1){ //1.1????
+                window.clearInterval(timer);
+                // opa = 1;
+                // utils.css(ele,'opacity',opa);
+                return;
+            }else {
+                opa+=(0.2);//0.1
+                console.log(opa);
+                utils.css(ele,'opacity',opa);
+            }
+        },10)
+    }
+
+
+</script>
