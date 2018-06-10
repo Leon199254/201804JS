@@ -77,15 +77,18 @@ function loadImg(img){
         return;
     };
     var tempTop = utils.win('scrollTop') + utils.win('clientHeight');
-    img.style.opacity = 0;
     if(img.imgTop <= tempTop){
+        img.style.opacity = 0;
         var trueSrc = img.getAttribute('trueSrc');
         var tempImg = document.createElement('img');
         tempImg.src = trueSrc;
         tempImg.onload = function () {
             img.src = trueSrc;
             img.loaded = true;
-            img.style.opacity = 1;
+            setTimeout(function () {
+                img.style.opacity = 1;
+            },200);
+
         };
         tempImg = null;
     }
