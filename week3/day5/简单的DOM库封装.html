@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="ul">
+    <li>
+        <span></span>
+        <span></span>
+    </li>
+    <li class="a aa"></li>
+    <li class="aaa"></li>
+    <!--这是个注释-->
+    <li class="li1 li2   li3"></li>
+    <li class="li1"></li>
+    <li class="li2"></li>
+    <ul class=" li3"></ul>
+    <ul></ul>
+    <ul></ul>
+</ul>
+</body>
+</html>
+<script>
+    /*
+    * children: 获取所有的元素子节点 (在IE6-8会把注释节点也当做元素节点)
+    * childNodes: 获取所有的子节点
+    * nodeType:9 #document
+    * nodeType:1 大写的标签名
+    * nodeType:3 #text
+    * nodeType:8 #comment 注释
+    * */
+    var oUl = document.getElementById('ul');
+    // console.log(oUl.children);
+
+    // function myChildren(ele) {
+    //     var nodeList = ele.childNodes;
+    //     var ary = [];
+    //     for(var i = 0; i < nodeList.length; i++){
+    //         if(nodeList[i].nodeType == 1){
+    //             ary.push(nodeList[i])
+    //         }
+    //     }
+    //     return ary;
+    // }
+
+    //我们发现 循环childNodes  会比 循环children 多很多次
+    //而且 iE6-8 不兼容children的原因时他把注释节点当成了元素节点
+    //那么我们可以直接循环 children 来提高函数执行的效率；
+    // function myChildren(ele) {
+    //     var nodeList = ele.children;
+    //     var ary = [];
+    //     for(var i = 0; i < nodeList.length; i++){
+    //         if(nodeList[i].nodeType == 1){
+    //             ary.push(nodeList[i])
+    //         }
+    //     }
+    //     return ary;
+    // }
+    //
+    // var lis = myChildren(oUl);
+    // lis[0].innerHTML = '121212121212';
+
+
+    /*function myChildren(ele,tagName) {
+        var nodeList = ele.childNodes;
+        var ary = [];
+        for(var i = 0; i < nodeList.length; i++){
+            if(nodeList[i].nodeType == 1){
+                ary.push(nodeList[i])
+            }
+        }
+        if(typeof tagName === 'undefined')return ary;
+        for(var j = 0 ; j < ary.length; j++){
+            if(ary[j].nodeName.toLowerCase() !== tagName.toLowerCase()){
+                ary.splice(j,1);
+                j--;//防止数组塌陷；
+            }
+        }
+        return ary;
+    }
+*/
+    // function myChildren(ele,tagName) {
+    //     var nodeList = ele.childNodes;
+    //     var ary = [];
+    //     for(var i = 0; i < nodeList.length; i++){
+    //         var temp = nodeList[i];
+    //         if(typeof tagName === 'undefined'){
+    //             if(temp.nodeType == 1){
+    //                 ary.push(temp);
+    //             }
+    //         }else {
+    //             if(temp.nodeType == 1 && temp.nodeName.toLowerCase() === tagName.toLowerCase()){
+    //                 ary.push(temp);
+    //             }
+    //         }
+    //     }
+    //     return ary;
+    // }
+    //
+    // console.log(myChildren(oUl,'ul'));// ==>[ul,ul,ul]
+
+    // var lis = document.getElementsByClassName('li1 li2');
+    // console.log(lis);
+
+    //传一个类名
+    function getByClass(str) {
+        var nodeList = document.getElementsByTagName('*');
+        str = str.replace(/\s/g,'');
+        var ary = [];
+        for(var i = 0; i< nodeList.length; i++){
+            var claName = nodeList[i].className;//'li1 li2   li3'
+            // var reg = new RegExp('\\b'+str+'\\b');
+            var reg = new RegExp('(^|\\s)'+str+'(\\s|$)');
+            if(reg.test(claName)){
+                ary.push(nodeList[i])
+            }
+        }
+        return ary;
+    }
+    var lis = getByClass('aaa');
+    console.log(lis);
+
+
+</script>

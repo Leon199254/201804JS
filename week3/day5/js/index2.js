@@ -1,16 +1,5 @@
 //第一步 拿JSON数据 把数据放到页面上
 
-//函数ajax：获取数据用的函数
-//函数getMinUl ： 获取个子最矮的ul
-//函数giveHtml： 把数据渲染到页面（找到个子最矮的ul优先塞；这是为了避免强烈的高低差）
-//函数setImgTop： 计算每一个图片到body的距离+50；并把这个值存到了img的自定义属性上
-//函数loadImg： 单张图片懒加载
-//函数loadAll: 所有图片懒加载
-
-//函数loadMore: 加载更多数据
-
-
-
 var data = null;
 function ajax() {
     var xhr = new XMLHttpRequest();
@@ -70,18 +59,12 @@ giveHtml();
 
 let imgs = document.getElementsByTagName('img');
 //这个for是为了给每一个图片加一个自定义属性 用来存储该图片到body的距离
-function setImgTop() {
-    for(let i=0; i< imgs.length ; i++){
-        // let t = utils.offset(imgs[i]).top+imgs[i].clientHeight;
-        let t = utils.offset(imgs[i]).top + 50;
-        imgs[i].imgTop = t;
-    }
-}
-setImgTop();
 
 //这个函数是为了对每一个img都做一次图片懒加载的处理
 function loadAll() {
     for(let i = 0; i< imgs.length; i++){
+        let t = utils.offset(imgs[i]).top + 50;
+        imgs[i].imgTop = t;
         loadImg(imgs[i]);
     }
 }
@@ -91,7 +74,6 @@ loadAll();//在这执行是为了让当前屏的图片显示出来
 //这个函数是为了在屏幕滚动时执行loadAll函数
 window.onscroll = function () {
     loadMore();//加载更多数据
-    setImgTop();//给新加载的img计算top值并存储到img的私有属性上
     loadAll();//进行所有图片的懒加载
 };
 
@@ -131,6 +113,7 @@ function loadMore() {
         //说明ul的底边已经露出了
         ajax();//请求数据用的
         giveHtml();//把数据塞到页面
+        setImgTop();//给新加载的img计算top值并存储到img的私有属性上
     }
 }
 
