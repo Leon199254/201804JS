@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 1060px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        #box ul {
+            width: 200px;
+            margin: 0 5px;
+            float: left;
+            list-style: none;
+        }
+
+        #box ul li {
+            background: #ccc url(img/default.gif) no-repeat center center;
+            margin-bottom: 10px;
+        }
+
+        #box ul li img {
+            width: 100%;
+            display: none;
+            opacity: 0;
+        }
+
+        #top {
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 100px;
+            color: #000;
+            background: palegreen;
+            font-size: 30px;
+            cursor: pointer;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+</div>
+<div id="top">top</div>
+</body>
+</html>
+<script src="utils.js"></script>
+<script>
+    let dataImg = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg"];
+
+    function createLi() {
+        let oLi = document.createElement("li");
+        let index = utils.random(0, dataImg.length - 1);
+        oLi.innerHTML = `
+        <img src = "" realImg = "img/${dataImg[index]}">
+        `;
+        oLi.style.height = utils.random(80, 200) + "px";//每个li随机的高度
+        return oLi;
+    }
+
+    //每创建的li是放入最短的ul标签里
+    let oBox = document.getElementById("box");
+    let oUls = oBox.getElementsByTagName("ul");
+    let oImgs = oBox.getElementsByTagName("img");
+    let aUls = [...oUls];
+
+    function li50() {
+        for (let i = 0; i < 50; i++) {
+            //1.对ul标签进行排序(按照ul标签的高度)
+            aUls.sort(function (a, b) {
+                return a.offsetHeight - b.offsetHeight;
+            });
+            //最短的ul标签 aUls[0]
+            //2.创建li标签
+            let oLi = createLi();
+            //3.把li标签添加到最短的ul标签
+            aUls[0].appendChild(oLi);
+        }
+    }
+
+    li50();
+    window.setTimeout(showImg, 1000);//首屏图片延迟加载
+    let winH = utils.win("clientHeight");
+
+    function showImg() {
+        let scrollH = winH + utils.win("scrollTop");//一屏高度+卷出去高度
+        [...oImgs].forEach((item, index) => {
+            let imgPos = item.offsetHeight + utils.offset(item).t;
+            //scrollH>=imgPos 就可以加载真实图片
+            if (scrollH >= imgPos) {
+                loadImg(item);//加载显示真实图片的过程
+            }
+        })
+    }
+
+    function loadImg(oImg) {
+        if (oImg.loaded) return;
+        //先创建一个img标签，把真实的图片路径赋值给img标签，让其在后台加载
+        //当图片加载成功以后，再显示在页面上
+        let tempImg = new Image();//document.createElement("img")
+        tempImg.src = oImg.getAttribute("realImg");//把真实的图片路径赋值给创建的图片的src属性
+        tempImg.onload = function () {//加载成功触发的事件
+            oImg.src = this.src;//在页面上显示真实的图片
+            oImg.loaded = true;//已加载的标识 , 防止重复加载
+            oImg.style.display = "block";
+            window.setTimeout(() => {
+                oImg.style.opacity = 1;
+            }, 500);
+            oImg.parentNode.style.height = oImg.offsetHeight + "px";
+        };
+        tempImg.onerror = function () {//加载失败时触发的事件
+            oImg.loaded = true;
+        }
+    }
+
+    //回到顶部的实现
+    let oTop = document.getElementById("top");
+    function btnDisplay() {
+        //卷出去的高度超过一屏时才显示按钮
+        let scrollT = utils.win("scrollTop");
+        if (scrollT >= winH) {
+            oTop.style.display = "block";
+        } else {
+            oTop.style.display = "none";
+        }
+    }
+    btnDisplay();
+    let duration = 500;
+    let interval = 15;
+    oTop.onclick = function () {
+        oTop.style.display = "none";//防止不断点击top按钮，定时器积累
+        window.onscroll = null;//去掉滚动条绑定的行为
+        let target = utils.win("scrollTop");//总路程
+        let step = interval / duration * target;//单步走的距离
+        //每隔15ms，滚动条往前走step距离
+        let timer = window.setInterval(() => {
+            let cur = utils.win("scrollTop");//滚动条卷出去的高度
+            cur -= step;//减去往前单步移动的距离，剩下卷出去的高度
+            if(cur<= 0){
+                window.clearInterval(timer);
+                utils.win("scrollTop", 0);
+                window.onscroll = scrollFn;//到顶部时再绑定上滚动条行为
+                return ;
+            }
+            utils.win("scrollTop", cur);
+        }, interval);
+    };
+    function scrollFn() {
+        btnDisplay();
+        showImg();//滚动条发生改变时会触发scroll事件 其他屏图片延迟加载
+        //当滚动条距离文档底部200px时，重新再加载50个li
+        //一屏的高度+卷出去的高度 = 文档的真实高度  滚动条到底部了
+        let realH = utils.win("scrollHeight");
+        let scrollT = utils.win("scrollTop");
+        if (winH + scrollT >= realH - 200) {
+            li50();
+            showImg();
+        }
+    }
+    window.onscroll = scrollFn;
+</script>
