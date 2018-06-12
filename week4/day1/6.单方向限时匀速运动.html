@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 500px;
+            top: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id = "div1"></div>
+</body>
+</html>
+<script src="utils.js"></script>
+<script>
+    function Linear(t,b,c,d){//匀速运动
+        return t/d*c+b;
+    }
+    function move(ele,attr,duration,target){
+        let begin = utils.css(ele,attr);
+        let change = target - begin;
+        let times = 0;
+        let timer = window.setInterval(()=>{
+            times+=15;
+            if(times>=duration){
+                utils.css(ele,attr,target);
+                clearInterval(timer);
+                return;
+            }
+            //现在位置 = 已走的路程+起始位置
+            let cur = Linear(times,begin,change,duration);
+            utils.css(ele,attr,cur);
+        },15)
+    }
+    let oDiv = document.getElementById('div1');
+    move(oDiv,"left",1000,0);
+
+
+
+
+</script>

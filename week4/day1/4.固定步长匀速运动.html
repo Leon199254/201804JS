@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script src="utils.js"></script>
+<script>
+    //每隔15ms往前移动10px
+    let oDiv = document.getElementById("div1");
+    let cur = utils.css(oDiv, "left"); //获取left值
+    let target = utils.win("clientWidth") -  oDiv.offsetWidth;//最终的位置，最大的left的值
+    let timer = window.setInterval(() => {
+        cur += 10;
+        if(cur>=target){//固定步长的边界判断
+            clearInterval(timer);
+            utils.css(oDiv, "left", target);
+            return;
+        }
+        utils.css(oDiv, "left", cur);
+    }, 15)
+
+</script>

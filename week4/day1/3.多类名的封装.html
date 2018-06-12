@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="box1 box2"></div>
+    <div class=" box1 box2 box3 box4"></div>
+    <div class="box2 box11 box3 "></div>
+    <div class=" box3 box4 box1"></div>
+</body>
+</html>
+<script>
+    /**
+     *
+     * @param strClass 一个或多个类名
+     * @param context  范围
+     * @return ary  匹配的元素
+     */
+    function getElesByClassName(strClass,context){
+        context = context ||document;
+        var eles = context.getElementsByTagName("*");//获取所有的元素
+        //拿到每个类名 ["box1","box2"]
+        //去掉首尾空格 /^ +| +$/g;
+        var aClass = strClass.replace(/^ +| +$/g,"").split(/ +/g);//["box1","box2"]
+       for(var i = 0;i<aClass.length;i++){
+           var curClass = aClass[i];//第一次box1 第二次box2
+           var ary = [];//用来保存匹配的内容
+           var reg = new RegExp("(^| +)"+curClass+"( +|$)"); ;//匹配类名的正则 要么是类名开头或结尾，要么类名左右两边是一到多个空格
+           for(var k = 0;k<eles.length;k++){
+               if(reg.test(eles[k].className)){
+                   ary.push(eles[k]);
+               }
+           }
+           eles = ary;//把匹配这次类名的元素赋值给eles,下次查找时就会从上次结果中查找
+       }
+       return ary;
+
+    }
+
+    getElesByClassName(" box1  box2 ");
+    //自己再封装下hasClass addClass removeClass
+
+
+</script>

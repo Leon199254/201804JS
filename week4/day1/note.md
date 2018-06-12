@@ -9,3 +9,8 @@ interval : 15ms 间隔时间
  duration/interval*step = target; 
 => interval/duration = step/target
 => step  = interval/duration*target;
+
+固定步长的匀速运动(对时间没要求，只要达到目的地)
+限定时间的运动(必须在规定的时间到达目的地)
+
+

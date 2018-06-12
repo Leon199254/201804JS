@@ -79,6 +79,7 @@
     let oBox = document.getElementById("box");
     let oUls = oBox.getElementsByTagName("ul");
     let oImgs = oBox.getElementsByTagName("img");
+    let oLis = oBox.getElementsByTagName("li");
     let aUls = [...oUls];
 
     function li50() {
@@ -101,11 +102,11 @@
 
     function showImg() {
         let scrollH = winH + utils.win("scrollTop");//一屏高度+卷出去高度
-        [...oImgs].forEach((item, index) => {
-            let imgPos = item.offsetHeight + utils.offset(item).t;
+        [...oLis].forEach((item, index) => {
+            let liPos = item.offsetHeight + utils.offset(item).t;
             //scrollH>=imgPos 就可以加载真实图片
-            if (scrollH >= imgPos) {
-                loadImg(item);//加载显示真实图片的过程
+            if (scrollH >= liPos) {
+                loadImg(item.children[0]);//加载显示真实图片的过程
             }
         })
     }
@@ -157,12 +158,12 @@
                 window.clearInterval(timer);
                 utils.win("scrollTop", 0);
                 window.onscroll = scrollFn;//到顶部时再绑定上滚动条行为
-                return ;
+                return;
             }
             utils.win("scrollTop", cur);
         }, interval);
     };
-    function scrollFn() {
+    function scrollFn(){
         btnDisplay();
         showImg();//滚动条发生改变时会触发scroll事件 其他屏图片延迟加载
         //当滚动条距离文档底部200px时，重新再加载50个li
