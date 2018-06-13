@@ -163,6 +163,24 @@ var utils = (function () {
             }
 
         }
+    function children(ele,tagName) {
+            var nodeList = ele.childNodes;
+            var ary = [];
+            for(var i = 0; i < nodeList.length; i++){
+                var temp = nodeList[i];
+                if(typeof tagName === 'undefined'){
+                    if(temp.nodeType === 1){
+                        ary.push(temp);
+                    }
+                }else {
+                    if(temp.nodeType === 1 && temp.nodeName.toLowerCase() === tagName.toLowerCase()){
+                        ary.push(temp);
+                    }
+                }
+            }
+            return ary;
+        }
+
 
 
     return {
@@ -174,7 +192,13 @@ var utils = (function () {
         setGroup: setGroup,
         css: css,
         win:win,
-        random:random
+        random:random,
+        getElesByClass:getElesByClass,
+        addClass:addClass,
+        removeClass:removeClass,
+        children:children
+
+
     }
 })();
 
