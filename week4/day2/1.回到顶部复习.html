@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #top{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: palegreen;
+            font-size: 30px;
+            text-align: center;
+            line-height: 100px;
+            position: fixed;
+            right: 10px;
+            bottom:10px;
+            display: none;
+        }
+    </style>
+</head>
+<body style="height: 5500px">
+<div id="top">Top</div>
+</body>
+</html>
+<script src="utils.js"></script>
+<script>
+    var oTop = document.getElementById("top");
+    //滚动条发生改变时，判断卷出去高度是否大于一屏的高度，若大于一屏的高度则把top按钮显示出来
+    var winH = utils.win("clientHeight");
+    function btnDisplay(){
+        var scrollT = utils.win("scrollTop");
+        if(scrollT>=winH){
+            utils.css(oTop,"display","block");
+        }else{
+            utils.css(oTop,"display","none");
+        }
+    }
+
+    //点击top按钮时，1s内匀速的回到顶部
+    var duration = 1000;
+    var interval = 15;
+    //var timer = null;//不推荐
+    oTop.onclick = function(){
+        clearInterval(this.timer); //清除上次定时器，防止定时器积累
+        window.onscroll = null;//去掉滚动条绑定的行为
+        var pos = utils.win("scrollTop");
+        var step = interval/duration*pos;
+        this.timer = window.setInterval(function(){
+            pos-=step;
+            if(pos<=0){
+                utils.win("scrollTop",0);
+                clearInterval(oTop.timer);//不能写this.timer.因为定时器里的this是window
+                window.onscroll = scroll;
+                return;
+            }
+            utils.win("scrollTop",pos);
+        },interval);
+    };
+    function scroll(){
+        btnDisplay();
+    }
+    window.onscroll = scroll;
+
+    window.onmousewheel = function(){
+        clearInterval(oTop.timer);
+    }
+</script>

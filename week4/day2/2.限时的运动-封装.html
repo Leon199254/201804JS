@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left:100px;
+            top:100px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script src="utils.js"></script>
+<script>
+    //总时间 duration
+    //间隔时间 interval
+    //起始位置 begin
+    //目标位置 target
+    //总路程 change = 目标位置 target - 起始位置 begin
+    //已走的时间 times  累加间隔时间
+    //已走的路程  已走的时间/总时间*总路程 = times/duration*change
+    //现在的位置 = 已走的路程+起始位置
+    function Linear(t,b,c,d){
+        return t/d*c+b;
+    }
+    function move(ele,attr,duration,target){
+        clearInterval(ele.timer);//清除上个定时器
+        var begin = utils.css(ele,attr);//起始位置
+        var change = target - begin;
+        var times = 0;
+        ele.timer = window.setInterval(function(){
+            times +=15;
+            if(times>=duration){//边界的处理
+                utils.css(ele,attr,target);
+                clearInterval(ele.timer);
+                return;
+            }
+            var curPos = Linear(times,begin,change,duration);
+            utils.css(ele,attr,curPos);
+        },15)
+    }
+    var oDiv = document.getElementById("div1");
+    move(oDiv,"width",1000,600);
+    move(oDiv,"height",1000,600);
+    move(oDiv,"opacity",1000,0.1);
+</script>
