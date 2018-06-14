@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //解决回调嵌套问题，异步代码可以向写同步代码一样写
+    /*function A(){
+        B(function(){
+            D(function(){
+
+            })
+        })
+    }*/
+    /*function Promise(callBack){
+        callBack();
+    }*/
+
+   let p =  new Promise(function(resolve,reject){
+
+         resolve("a");//执行resolve表示成功状态
+        //reject("b")// 执行reject表示失败状态
+
+    })
+    //then第一个参数表示成功的回调 第二个参数表示失败的回调
+    p.then((data)=>{
+        console.log(data);
+    },(data)=>{
+        console.log(data);
+    })
+    //promise有三种状态，第一种状态是等待状态pending, 第二种成功状态fulfilled ,第三种状态失败 rejected
+
+</script>

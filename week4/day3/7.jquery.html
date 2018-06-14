@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //1.类库 在js文件里封装了一些方法，使用时直接引入这个js文件就可以使用里面封装的方法 jquery/prototype/zepto
+    //2.插件：把实现某些需求的功能给封装在一下，下次想要实现相同功能时，直接使用一下即可 (小的功能)
+    //3.UI组件：把html,css,js部分都实现了，直接按照规定的方式使用即可例如：bootstrap
+    //4.框架 结合了上面所有的功能，有自己的逻辑部分，必须严格按照框架给的api去使用 vue/react/angular
+    ( function( global, factory ) {
+    var
+        version = "3.3.1",
+
+        jQuery = function( selector, context ) {
+
+            return new jQuery.fn.init( selector, context ); //相当于返回jQuery类实例
+        }
+
+    jQuery.fn = jQuery.prototype = {
+
+        jquery: version,
+
+        constructor: jQuery,
+        each:function(){}
+    }
+    jQuery.extend = jQuery.fn.extend = function() {
+
+    }
+    jQuery.extend({  //核心的方法 jQuery类
+        isPlainObject:function () {
+
+        },
+        isEmptyObject:function(){
+
+        }
+    })
+    jQuery.fn.extend({//jQuery类原型上的方法
+        find:function(){},
+        filter:function () {
+
+        }
+    })
+    var init = jQuery.fn.init = function( selector, context, root ) {
+
+
+    }
+    init.prototype = jQuery.fn;
+
+    if ( !noGlobal ) {
+        window.jQuery = window.$ = jQuery;
+    }
+
+    return jQuery;
+    } )();
+</script>
+<script>
+    $()   //返回jQuery对象 - jQuery类的实例
+    jQuery() //返回jquery对象
+
+    //jQuery所有方法分成两大类，一类核心的方法（jQuery类），另一类是原型上的上
+    $.ajax()
+    $.each()
+    jQuery.each();
+
+    //原型上的方法 jquery对象
+    $().find()
+    jQuery().filter()
+
+   //jQuery方法运行时传的参数有三种方式：第一种选择器 第二种 js对象  第三种 函数会自动把jquery作为实参转给这个函数
+    $("p")
+    $("ul>li").css("color","red")
+    $("ul>li:not(.a)")
+    $("ul>li:nth-child(2)");
+
+    var oDiv = document.getElementById("div1");//原生js对象
+    $(oDiv) //$()把原生js包起来 就转换成jquery对象
+    $("div")[0] //->jq对象转换成原生JS对象
+    $("div").get(0) //->jq对象转换成原生JS对象
+
+
+    //第三种 jQuery(callBack)
+    jQuery(function($) {
+        // 你可以在这里继续使用$作为别名...
+    });
+    $(function($){
+
+    });
+    $(document).ready(function(){//DOM加载完成后再执行
+
+    })
+
+
+</script>

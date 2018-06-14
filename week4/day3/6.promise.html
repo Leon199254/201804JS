@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+
+  let p =   new Promise(function(resolve,reject){
+        let xhr = new XMLHttpRequest();
+        let resData = null;
+        xhr.open("get","json/data.json");
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState === 4&&/^2\d{2}$/.test(xhr.status)){
+                resData = JSON.parse(xhr.responseText);
+                resolve(resData);
+            }
+            if(/^[1|3-5]\d{2}$/.test(xhr.status)){
+                reject();
+            }
+        };
+        xhr.send(null);
+    });
+    p.then((data)=>{
+      console.log(data,this);
+    },()=>{
+      console.log("error")
+//        throw new Error("aa");
+    }).then(()=>{
+        console.log(1);
+    },()=>{
+       console.log(2);
+    })
+
+
+
+</script>

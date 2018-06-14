@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div1">
+    <ul>
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+        <li class="a">aaaaaaaaaaa</li>
+    </ul>
+    <div><span>aaa</span></div>
+    <span>cccc</span>
+    <span>dddd</span>
+</div>
+</body>
+</html>
+<script src="js/jquery-3.3.1.js"></script>
+<script>
+//    $("#div1>ul>li").css("color","red")
+    $("#div1>ul>li").eq(1).css("background","green");
+    $('#div1>ul>li:not(".a")').css("fontSize",'20px');
+
+    //遍历对象,数组，类数组
+    $.each([2,3,15,22],function(index,item){
+        console.log(index,item);//index 索引 item 数组的每一项
+    });
+
+    //遍历jq对象
+    $("#div1>ul>li").each(function(){
+        $(this).on("click",function(){
+            console.log($(this).index())
+        })
+    })
+
+    //jq类上核心方法 $.ajax()
+    /*$.ajax({
+        url:"",
+        async:true,//同步(false)还是异步（true）
+        cache:true,//缓存
+        dataType:"json", //设置服务器返回的数据类型
+        data:{aa:"11"},//客户端向服务的发送的数据
+        success:function(data){
+            console.log(data);//请求成功时返回的数据
+        },
+        error:function(){
+
+        }
+    })*/
+
+  /*  jQuery.extend({
+        fn:function(){
+            console.log("fn");
+        }
+    })*/
+    /*jQuery.fn.extend({
+        fn2:function(){
+            console.log("fn2")
+        }
+    })*/
+    /*$.fn();*/
+    /*$().fn2();*/
+
+    //多库共存
+    //var zf = jQuery.noConflict();//让渡$符使用权
+   /* zf("div")*/
+
+   //var zhufeng = jQuery.noConflict(true);//$和jQuery都不能使用，使用返回值
+    //zhufeng("div")
+
+    //find() 找所有的后代元素
+    //filter() 筛选元素 同级的筛选
+    //children() 查找的子元素
+    $("#div1>ul>li").filter(".a").css("color","red");
+
+</script>

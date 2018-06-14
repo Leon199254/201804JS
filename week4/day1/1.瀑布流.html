@@ -103,10 +103,15 @@
     function showImg() {
         let scrollH = winH + utils.win("scrollTop");//一屏高度+卷出去高度
         [...oLis].forEach((item, index) => {
+            item.id = "aa"+index;
             let liPos = item.offsetHeight + utils.offset(item).t;
             //scrollH>=imgPos 就可以加载真实图片
             if (scrollH >= liPos) {
                 loadImg(item.children[0]);//加载显示真实图片的过程
+            }else{
+
+
+                //console.log(item.id,utils.offset(item).t)
             }
         })
     }

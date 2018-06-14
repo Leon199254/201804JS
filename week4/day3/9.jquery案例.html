@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding:0;
+        }
+        ul{
+            list-style: none;
+        }
+        #box {
+            width: 400px;
+            margin: 20px auto;
+        }
+
+
+        #box > ul > li {
+            width: 400px;
+            line-height: 40px;
+            background: yellow;
+            color: #000;
+            font-size: 25px;
+            text-align: center;
+            border-bottom: 1px solid #fff;
+        }
+        #box > ul > li>ul{
+            background: #ccc;
+            display: none;
+        }
+        #box > ul > li>ul>li{
+            line-height: 40px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <ul>
+        <li>Item1
+            <ul>
+                <li>li-1</li>
+            </ul>
+        </li>
+        <li>Item2
+            <ul>
+                <li>li-1</li>
+                <li>li-2</li>
+                <li>li-3</li>
+                <li>li-4</li>
+            </ul>
+        </li>
+        <li>Item3
+            <ul>
+                <li>li-1</li>
+                <li>li-2</li>
+                <li>li-3</li>
+                <li>li-4</li>
+            </ul>
+        </li>
+        <li>Item4
+            <ul>
+                <li>li-1</li>
+                <li>li-2</li>
+                <li>li-3</li>
+                <li>li-4</li>
+            </ul>
+        </li>
+        <li>Item5
+            <ul>
+                <li>li-1</li>
+                <li>li-2</li>
+                <li>li-3</li>
+                <li>li-4</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
+<!--每个li绑定点击事件,判断li下ul是否显示，若显示则隐藏，若隐藏则显示-->
+<script src ="js/jquery-3.3.1.js"></script>
+<script>
+    $("#box>ul>li").on("click",function(){
+        //用this表示每个li
+        let $ul = $(this).children('ul');
+        if($ul.is(":visible")){
+            $ul.stop().slideUp(1000);
+        }else{
+            $ul.stop().slideDown(1000).parent("li").siblings().children("ul").hide();
+        }
+    })
+
+</script>

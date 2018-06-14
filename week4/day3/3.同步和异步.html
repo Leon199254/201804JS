@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //js是单线程的，每次只能做一件事情
+    //浏览器是多线程的，浏览器提供了同步和异步的操作，提供了两个队列，一个是主队列，一个是等待队列的
+    //异步的操作：回调函数，ajax,定时器,事件...
+    //同步：这件事情完成后，才能执行下面的事件，若这件事件没完成，下面的事情不会执行
+    //异步：这件事若有等待的时间，这个等待时间可以不做这件事情，而去做其他事情，这件事需要去做时才去做
+    //若即有同步的又异步的代码，先执行同步的代码，再执行异步的
+    //同步代码放入主队列里，异步的代码放入等待队列里
+    //异步代码嵌套的问题 回调地狱 - promise
+    //嵌套 ：需要拿到上个异步代码的结果，再进行操作
+
+    console.log(1);
+    window.setTimeout(function(){//A
+        let a = "a";
+        console.log("A");
+        window.setTimeout(function(){//B
+            console.log(a,"B");
+        },500);
+    },1000);
+
+    //思考题 ：四个li，每个li宽度100,每隔1s,每个li相对于上一个li依次向前移动100px
+
+
+    console.log(3);
+
+
+
+</script>

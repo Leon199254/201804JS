@@ -20,7 +20,6 @@ var utils = (function () {
         var t = ele.offsetTop;
         var p = ele.offsetParent;
         while (p && p !== document.body) {
-
             l += p.offsetLeft + p.clientLeft;
             t += p.offsetTop + p.clientTop;
             p = p.offsetParent
@@ -96,6 +95,93 @@ var utils = (function () {
        return Math.round(Math.random()*(m-n)+n);
     }
 
+    /**
+     *
+     * @param strClass 一个或多个类名
+     * @param context  范围
+     * @return ary  匹配的元素
+     */
+    function getElesByClass(strClass,context){
+        context = context ||document;
+        var eles = context.getElementsByTagName("*");
+        var aClass = strClass.replace(/^ +| +$/g,"").split(/ +/g);
+        for(var i = 0;i<aClass.length;i++){
+            var curClass = aClass[i];
+            var ary = [];
+            var reg = new RegExp("(^| +)"+curClass+"( +|$)");
+            for(var k = 0;k<eles.length;k++){
+                if(reg.test(eles[k].className)){
+                    ary.push(eles[k]);
+                }
+            }
+            eles = ary;
+        }
+        return ary;
+    }
+
+
+
+        /**
+         * @param ele 当前元素
+         * @param strClass  单个类名
+         * @return true|false
+         */
+        function hasClass(ele,strClass){
+            var reg = new RegExp("(^| +)"+strClass+"( +|$)");
+            return reg.test(ele.className)
+        }
+
+        /**
+         * 添加类名
+         * @param ele  当前的元素
+         * @param strClass 一个类名或多个类名
+         */
+        function addClass(ele,strClass){
+            var aryClass =  strClass.replace(/(^\s+|\s+$)/g,"").split(/\s+/g);
+            for(var i = 0;i<aryClass.length;i++){
+                var curClass =aryClass[i];
+                if(!hasClass(ele,curClass)){
+                    ele.className += " "+curClass;
+                }
+            }
+        }
+
+        /**
+         * 删除类名
+         * @param ele  当前元素
+         * @param strClass 一个类名或多个类名
+         */
+        function removeClass(ele,strClass){
+
+            var aryClass = strClass.replace(/^ +| +$/g,"").split(/ +/g);
+            for(var i = 0;i<aryClass.length;i++){
+                var curClass =aryClass[i];
+                var reg = new RegExp("(^| +)"+curClass+"( +|$)","g");
+                if(hasClass(ele,curClass)){
+                    ele.className = ele.className.replace(reg," ");
+                }
+            }
+
+        }
+    function children(ele,tagName) {
+            var nodeList = ele.childNodes;
+            var ary = [];
+            for(var i = 0; i < nodeList.length; i++){
+                var temp = nodeList[i];
+                if(typeof tagName === 'undefined'){
+                    if(temp.nodeType === 1){
+                        ary.push(temp);
+                    }
+                }else {
+                    if(temp.nodeType === 1 && temp.nodeName.toLowerCase() === tagName.toLowerCase()){
+                        ary.push(temp);
+                    }
+                }
+            }
+            return ary;
+        }
+
+
 
     return {
         listToAry: listToAry,
@@ -106,7 +192,13 @@ var utils = (function () {
         setGroup: setGroup,
         css: css,
         win:win,
-        random:random
+        random:random,
+        getElesByClass:getElesByClass,
+        addClass:addClass,
+        removeClass:removeClass,
+        children:children
+
+
     }
 })();
 
