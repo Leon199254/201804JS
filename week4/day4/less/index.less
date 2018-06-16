@@ -1,0 +1,60 @@
+//变量
+@fontSize:29px;
+//@color:#fff;
+//@border:10px solid #ccc;
+//@img:'../imgs/newimg';
+//#div1{
+//  font-size: @fontSize;
+//  background: #52E025;
+//  height: 300px;
+//  //color: @color;
+//  //@{c}:#fff;
+//  border: @border;
+//  background: url('@{img}/3.jpg');
+//  //background: url(../imgs/3.jpg);
+//}
+
+//var a = 29;
+
+//混合
+
+//#div1{
+//  //@fontSize:18px;
+//  width: 200px;
+//  //height: 50px;
+//  background: #999999;
+//  .box{
+//    //@fontSize:12px;
+//    background: #588EE0;
+//    width: 100px;
+//    font-size: @fontSize;
+//    //height: 50px;
+//    .tip{
+//      width: 30px;
+//      height: 30px;
+//      margin-top: 20px;
+//      background: #F4D761;
+//    }
+//  }
+//  .box2{
+//    //@fontSize:34px;
+//    .box;
+//    //font-size: @fontSize;
+//  }
+//  .tip{
+//    //width: 30px;
+//    //height: 30px;
+//    //margin-top: 20px;
+//    //background: #F4D761;
+//  }
+//}
+
+//函数
+.width(@w:400px){
+  width: @w;
+  height: @w/2;
+}
+#div1{
+  .width(200px);
+  background: #F4D761;
+}

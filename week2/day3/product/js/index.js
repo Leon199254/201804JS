@@ -44,6 +44,7 @@
         }
     });
     //对li进行排序
+    var flag = 1;
     let oUl  = document.getElementById('list');
     let oLis =oUl.getElementsByTagName("li");
     let aLis = [...oLis];
@@ -53,18 +54,30 @@
         1 ->data-hot
         2 ->data-time*/
         let key  = arr[index]; //根据索引拿到对应自定义属性名
-       aLis.sort((a,b)=>{
-            let prev = a.getAttribute(key);
-            let next = b.getAttribute(key);
-            prev = prev.replace(/-/g,"");//把日期里的-去掉
-            next = next.replace(/-/g,"");
-            return prev-next;
-       });
+        if(flag == 1){
+            flag = 2;
+            aLis.sort((a,b)=>{
+                let prev = a.getAttribute(key);
+                let next = b.getAttribute(key);
+                prev = prev.replace(/-/g,"");//把日期里的-去掉
+                next = next.replace(/-/g,"");
+                return prev-next;
+            });
+        }else {
+            flag = 1;
+            aLis.sort((a,b)=>{
+                let prev = a.getAttribute(key);
+                let next = b.getAttribute(key);
+                prev = prev.replace(/-/g,"");//把日期里的-去掉
+                next = next.replace(/-/g,"");
+                return next - prev;
+            });
+        }
+
         //排序完后重新添加到页面
         aLis.forEach((item,index)=>{
            oUl.appendChild(item);
         })
     }
 })();
-
 
