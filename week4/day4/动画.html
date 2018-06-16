@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$珠峰培训$</title>
+</head>
+<body>
+<div id='div1'>珠峰培训</div>
+</body>
+</html>
+<script type="text/javascript">
+    //JS动画  定时器
+    //1、 固定步长
+    //回到顶部 不规定时间 以固定的步长去++  或者--
+
+    var timer = window.setInterval(function () {
+        //判断条件是以scrollTop为基准
+        window.scrollTop -=10;
+    },15);
+
+    //2、固定时间
+    //
+    var times = 0;
+    var duration = 1000;
+    var timer = window.setInterval(function () {
+        times += interval;
+        if(times >= duration){
+            window.scrollTop =0;
+            //清除定时器
+        }
+        // var cur =target - times/duration*target;// times/duration ===>现在的时间占总时间的百分比
+        //     //times/duration*target(总路程)===> 速度（target/duration）  ×  时间(times)
+        // window.scrollTop = cur;
+
+        var step = interval/duration*target;// ===target/duration*interval //(target/duration 速度 * interval) 一个频率走的路程（步长）
+        window.scrollTop -= step;
+        //判断条件以times为基准
+    },interval);
+</script>  

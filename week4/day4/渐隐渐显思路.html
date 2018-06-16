@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$珠峰培训$</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            margin: 50px auto;
+            width: 400px;
+            height: 300px;
+            overflow: hidden;
+        }
+        ul{
+            list-style: none;
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        li{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div id='div1'>
+    <ul>
+        <li style="background: #E01D20;z-index: 1;opacity: 1">1</li>
+        <li style="background: #ccc">2</li>
+        <li style="background: #F4D761">3</li>
+        <li style="background: #52E025">4</li>
+        <li style="background: #588EE0">5</li>
+    </ul>
+</div>
+</body>
+</html>
+<script>
+    //获取元素
+    var lis = document.getElementsByTagName('li');
+    var index = 0;//当前元素的索引
+    var timer = window.setInterval(function () {
+        //先把所有的li的样式改成默认样式
+        for(var i= 0; i < lis.length; i++){
+            lis[i].style.opacity = 0;
+            lis[i].style.zIndex = -1;
+        }
+        //当前li显示
+        lis[index].style.opacity = 1;
+        lis[index].style.zIndex = 1;
+
+        //控制index
+        index === lis.length-1 ? index = 0 :index++;
+    },2000)
+</script>  

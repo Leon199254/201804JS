@@ -31,9 +31,11 @@
     function btnDisplay(){
         var scrollT = utils.win("scrollTop");
         if(scrollT>=winH){
-            utils.css(oTop,"display","block");
+            // utils.css(oTop,"display","block");
+            oTop.style.display = 'block'
         }else{
-            utils.css(oTop,"display","none");
+            // utils.css(oTop,"display","none");
+            oTop.style.display = 'none'
         }
     }
 
