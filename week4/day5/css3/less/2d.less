@@ -1,0 +1,100 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+#div1{
+  margin: auto;
+  width: 600px;
+  height: 350px;
+  overflow: hidden;
+  position: relative;
+  >img{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  ul{
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    list-style: none;
+    text-align: center;
+    z-index: 100;
+    li{
+      display: inline-block;
+      border: 5px solid #fff;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      overflow: hidden;
+      margin: 0 10px;
+      cursor: pointer;
+      background: #bdffd2;
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  & :target{
+    z-index:10;
+  }
+  #img1:target{
+    animation: slideL 2s;
+  }
+  #img2:target{
+    animation: opa 1s;
+  }
+  #img3:target{
+    animation: rotate 10s;
+  }
+  #img4:target{
+    animation: opa 1s;
+  }
+  #img5:target{
+    animation: opa 1s;
+  }
+  #img6:target{
+    animation: opa 1s;
+  }
+}
+@keyframes slideL {
+  0%{
+    transform: translateX(-400px);
+  }
+  100%{
+    transform: translateX(0);
+  }
+}
+@-webkit-keyframes slideL {
+  0%{
+    transform: translateX(-400px);
+  }
+  100%{
+    transform: translateX(0);
+  }
+}
+@keyframes opa {
+  from{
+    //opacity: 0;
+    transform: scale(0.5);
+    transform-origin: 0 0;
+  }
+  to{
+    //opacity: 1;
+    transform: scale(1);
+    transform-origin: 0 0;
+  }
+}
+@keyframes rotate {
+  0%{
+    transform: rotate(0);
+  }
+  50%{
+    transform: rotate(360deg);
+  }
+  100%{
+    transform: rotate(0);
+  }
+}

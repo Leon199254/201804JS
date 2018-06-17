@@ -1,0 +1,82 @@
+@wid:400px;//变量
+
+
+//混合
+/*.w{
+  width:@wid;
+  height: @wid - 100;//+ -  前后要有空格分离
+}
+#div1{
+  .w;
+  background: #F4D761;
+  font-size: 20px;
+  color: #111;
+  &:hover{//&代表 #div1
+     background: #999999;
+  }
+  !*编译结果
+    #div1:hover {
+      background: #999999;
+    }
+  *!
+  ul{
+    list-style: none;
+    li.zf{
+      font-size: 40px;
+      color: #7681cc;
+      &-2{//&代表 li.zf
+        color: #52E025;
+        &_3{//& 代表 li.zf-2
+          font-size: 30px;
+          color: #555555;
+        }
+      }
+    }
+  }
+}*/
+
+//混合 克隆
+//#div2{
+//  #div1
+//}
+
+//extend 只拿当前元素自己的样式，不会把子元素的样式拿过来 也不会继承伪类样式
+/*#div2 :extend(#div1){
+
+}*/
+// 函数
+//.w(@a:200px,@b:300px){
+//  width: @a;
+//  height: @b;
+//}
+//.w(@a:100px,@b:300px){
+//  width: @a;
+//  height: @b;
+//  @c:(@a + @b)/2
+//}
+.w(@a:5px,@b:solid,@c:#ccc){
+  border: @arguments;
+}
+#div1{
+  .w(1px,dashed,#333);
+  //margin: @c;
+  background: #52E025;
+}
+
+#div2{
+  #div1 !important;
+}
+
+
+//循环
+.m (@n) when (@n < 5){
+  .dd_@{n}{
+    width: 10px*@n;
+  }
+  .m(@n + 1);
+}
+.m(1);
+
+//#div1{
+//  .m(1)
+//}

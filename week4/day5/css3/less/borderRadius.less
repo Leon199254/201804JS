@@ -1,0 +1,47 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+#div1{
+  margin: 50px auto;
+  ul{
+    list-style: none;
+    background: #cccccc;
+    margin: auto;
+    width: 400px;
+    li{
+      width: 100px;
+      height: 100px;
+      line-height: 100px;
+      text-align: center;
+      color: #ddd;
+      font-size: 20px;
+      border: 5px solid #c861f4;
+      margin: 10px;
+      &:nth-child(1){
+        border-radius: 10px 20px 30px 40px;
+      }
+      &:nth-child(2){
+        border-radius: 10px 40px;
+      }
+      &:nth-child(3){//圆
+        border-radius: 50%;
+      }
+      &:nth-child(4){//圆
+        //width: 200px;
+        height: 200px;
+        border-radius: 50%;
+      }
+      &:nth-child(5){//圆
+        //border-radius: 50% 0 50% 0;
+        border-radius: 55px 55px 0 0;
+        height: 50px;
+      }
+      //@a:10px 10px 10px 10px;
+      //@b:20px 20px 20px 20px;
+      &:nth-child(6){
+        //border-radius: @a / 20px 20px 20px 20px;
+      }
+    }
+  }
+}

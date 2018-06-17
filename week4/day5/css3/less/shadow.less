@@ -1,0 +1,25 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+#div1{
+  ul{
+    list-style: none;
+    margin: auto;
+    li{
+      width: 200px;
+      height: 200px;
+      border:2px solid #ccc;
+      margin: 20px auto;
+      &:nth-child(1){
+        box-shadow: 10px 9px 23px 3px #ad9999,10px 9px 23px 3px #9aec7f,10px 9px 23px 3px #ad9999;
+      }
+      &:nth-child(2){
+        font-size: 30px;
+        color: #FFFFFF;
+        text-shadow: 10px 10px 5px #ccc;
+        -webkit-text-stroke: 1px red;
+      }
+    }
+  }
+}

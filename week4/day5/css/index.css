@@ -1,0 +1,55 @@
+/*.w{
+  width:@wid;
+  height: @wid - 100;//+ -  前后要有空格分离
+}
+#div1{
+  .w;
+  background: #F4D761;
+  font-size: 20px;
+  color: #111;
+  &:hover{//&代表 #div1
+     background: #999999;
+  }
+  !*编译结果
+    #div1:hover {
+      background: #999999;
+    }
+  *!
+  ul{
+    list-style: none;
+    li.zf{
+      font-size: 40px;
+      color: #7681cc;
+      &-2{//&代表 li.zf
+        color: #52E025;
+        &_3{//& 代表 li.zf-2
+          font-size: 30px;
+          color: #555555;
+        }
+      }
+    }
+  }
+}*/
+/*#div2 :extend(#div1){
+
+}*/
+#div1 {
+  border: 1px dashed #333333;
+  background: #52E025;
+}
+#div2 {
+  border: 1px dashed #333333 !important;
+  background: #52E025 !important;
+}
+.dd_1 {
+  width: 10px;
+}
+.dd_2 {
+  width: 20px;
+}
+.dd_3 {
+  width: 30px;
+}
+.dd_4 {
+  width: 40px;
+}

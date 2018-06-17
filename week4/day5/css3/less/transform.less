@@ -1,0 +1,52 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+#div1{
+  margin: 50px auto;
+  .imgBox{
+    width: 200px;
+    margin: 0px auto 0 ;
+    height: 304px;
+    border: 1px solid #ccc;
+    img{
+      width: 100%;
+      height: 100%;
+      transition: all 1s;
+      transform-origin:center center;//前x 后Y
+    }
+    &:hover{
+      img{
+        //transform: rotate(30deg);
+        //transform: skew(30deg,45deg);
+        //transform: skewX(30deg) skewY(30deg);
+        //transform: skewY(-45deg);
+        //transform: scale(0.5,2);
+        //transform: scaleY(2);
+        //transform: translate(200px,100px);
+        //transform: translateX(-100px);
+        animation-name: move;
+        animation-duration: 2s;
+        animation-delay: 2s;
+        animation-timing-function: linear;
+        animation-iteration-count: 1;
+        animation-direction: alternate;
+        animation-fill-mode: both;
+      }
+    }
+  }
+}
+@keyframes move {
+  0%{
+    transform: translate(100px,100px);
+  }
+  25%{
+    transform: translate(400px,400px);
+  }
+  50%{
+    transform: translate(400px,0);
+  }
+  100%{
+    transform: translate(100px,0);
+  }
+}

@@ -1,0 +1,149 @@
+*{
+  margin: 0;
+  padding: 0;
+  //list-style: none;
+}
+ul{
+  list-style: none;
+}
+/*
+#div1{
+   margin: 50px auto;
+   width: 600px;
+   ul{
+     width: 100px;
+     height: 100px;
+     list-style: none;
+     overflow: hidden;
+     li{
+       width: 45px;
+       height: 45px;
+       line-height: 45px;
+       margin-right: 5px;
+       background: #F4D761;
+       float: left;
+       text-align: center;
+       !*!/&:nth-child(1){
+       //  font-size: 20px;
+       //  color: #588EE0;
+       //}
+       //&:nth-child(2n){
+       //  font-size: 20px;
+       //  color: #588EE0;
+       //}
+       //&:nth-child(2n-1){
+       //  font-size: 20px;
+       //  color: #18e054;
+       //}
+       &:nth-child(even){//2n
+         font-size: 20px;
+         color: #588EE0;
+         &:hover{
+           background: #cccccc;
+         }
+       }
+       &:nth-child(odd){//2n-1
+         font-size: 20px;
+         color: #18e054;
+       }*!
+     }
+     //& :nth-child(2){
+     //  background: #E01D20;
+     //}
+     & :nth-of-type(2) {
+       font-size: 29px;
+     }
+     //&:nth-child(1){
+     //  background: #E01D20;
+     //}
+
+     !*
+       nth-child --> 不区分是否是同一种元素
+       nth-of-type --> 区分是否是同一种元素，会找同种元素中满足条件的元素
+     *!
+
+     & :first-child{ // nth-child(1)
+       color: #ddd;
+     }
+     & :last-child{
+       color: #fff;
+     }
+     &:last-child{
+       font-size: 40px;
+     }
+     //&后有无空格  有空格代表子集的  无空格代表自己的
+     //& :only-child{
+     //  background: #588EE0;
+     //}
+     & :only-of-type{
+       background: #588EE0;
+     }
+     &:empty{
+       background: #E01D20;
+     }
+
+   }
+ }*/
+#div1{
+  margin: 50px auto;
+  width: 600px;
+  background: #E01D20;
+  ul{
+    width: 100px;
+    //height: 100px;
+    overflow: hidden;
+    li{
+      width: 45px;
+      height: 45px;
+      line-height: 45px;
+      margin-right: 5px;
+      //background: #F4D761;
+      float: left;
+      text-align: center;
+      //&[class=zf]{//只能等于zf 空格都不能有
+      //  background: #E01D20;
+      //}
+      //&[class|=zf]{
+      //  background: #E01D20;
+      //}
+      //&[class*=zf]{
+      //      //  background: #E01D20;
+      //      //}
+      //&[class~=zf]{
+      //  background: #E01D20;
+      //}
+      /*&[class^=zf]{
+        background: #E01D20;
+      }*/
+      &[class$=zf]{
+        background: #E01D20;
+      }
+    }
+    //& :not(.aa){
+    //  background: #F4D761;
+    //}
+  }
+  p{
+    &:first-line{
+      font-size: 29px;
+    }
+    &:first-letter{
+      color: #E01D20;
+    }
+    &:before{
+      //first-letter first-line 会对这个伪类起作用
+      content: 'rrr';
+      font-size: 18px;
+    }
+    &:after{
+      content: '中华人民共和国';
+      font-size: 18px;
+    }
+  }
+}
+
+#div1:target{
+  background: #52E025;
+}
+
+

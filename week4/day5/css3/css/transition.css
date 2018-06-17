@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #588EE0;
+}
+#div1 {
+  width: 200px;
+  height: 200px;
+  line-height: 200px;
+  text-align: center;
+  color: #FFFFFF;
+  background: #F4D761;
+  margin: 50px auto;
+  transition: all 1.5s ease;
+  box-shadow: 0 0 10px 30px transparent;
+  border-radius: 50%;
+  opacity: 1;
+}
+#div1:hover {
+  box-shadow: 0 0 10px 0px #fff;
+}

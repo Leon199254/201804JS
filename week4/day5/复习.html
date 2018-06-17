@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$珠峰培训$</title>
+</head>
+<body>
+<div id='div1'>珠峰培训</div>
+</body>
+</html>
+<script>
+    /*
+    * 动画分为两种
+    * 1、固定步长 用定时器（setInterval） ++ 或 -- 步长就可以了 需要判定边界，到达边界 清除定时器
+    *
+    * 2、固定时长 速度 =  target(路程)/duration(时间)
+    *  再根据频率 计算出  一个频率需要走的路长  速度 * interval
+    * */
+
+    /*
+    * 轮播图
+    * 1、左右轮播
+    * 思路 --> 在外边固定一个盒子（overflow:hidden）
+    * 让里边的条（ul）左右滑动（自己的动画） 这ul后边再加一张跟第一张一样的(li)，等新增的li要向后接着滑动时，这时我们把ul的left 直接变成0，然后紧接着向后滑动到第二张；
+    *
+    *
+    * 2、渐隐渐现
+    * 思路 ---> 在外边固定一个盒子（overflow:hidden）
+    * 把所有的li放到同一个位置（通过绝对定位），通过改变z-index和opacity这两个属性，让相应的盒子显示出来；
+    * 渐隐渐现 是通过JQ的animate实现
+    *
+    * 异步-->
+    * 定时器
+    * 回调函数
+    * onload(所有的dom事件)
+    * promise
+    *
+    *
+    * 封装 插件
+    * 原生 用构造函数做的插件
+    *
+    * JQ  $.fn.extend({}) //这个是把自己封装的插件放到了JQ的原型上
+    *     $.extend({}) // 放到JQ的核心代码上（把JQ当对象用）
+    * */
+
+
+
+
+</script>  
