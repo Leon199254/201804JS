@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        body{
+            margin:0;
+        }
+        div{
+            width: 300px;
+            height: 300px;
+            background: yellow;
+            margin: 0 auto;
+        }
+        p{
+            width: 200px;
+            height: 200px;
+            background: palegreen;
+            margin: 0 auto;
+        }
+        a{
+            display: block;
+            width: 100px;
+            height: 100px;
+            background: pink;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div>
+    div
+    <p>
+        p
+        <a href="http://www.zhufengpeixun.cn">a</a>
+    </p>
+</div>
+</body>
+</html>
+<script>
+    var eles = document.querySelectorAll("div,p,a");
+    for(var i = 0;i<eles.length;i++){
+       /* eles[i].onclick = function(e){//DOM0级事件绑定只能是事件冒泡
+           alert(this.nodeName);
+           e.preventDefault();
+        }*/
+       //第三个参数表示事件传播的方式 false（默认值） 事件冒泡  true 事件捕获(基本不用)
+        eles[i].addEventListener("click",function(e){
+            alert(this.nodeName);
+            e.preventDefault();
+            e.stopPropagation();
+        },false);
+    }
+    //事件冒泡的机制：当前元素事件被触发时，其祖先元素相同的事件也会依次被触发
+    //事件冒泡顺序：由内往外
+    //事件捕获顺序：由外往里
+    //事件传播：事件冒泡和事件捕获
+</script>

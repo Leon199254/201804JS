@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height:100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">珠峰</div>
+</body>
+</html>
+<script>
+    var oDiv = document.getElementById('div1');
+    oDiv.onclick = function(){//点击这件事发生时，就会执行绑定方法
+        alert(1);
+    };
+    oDiv.onclick = function(){
+        alert(2);
+    };
+    //DOM2级事件绑定
+    oDiv.addEventListener("DOMContentLoaded",function(){},false);
+</script>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        body{
+            margin: 0;
+        }
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 300px;
+            top:300px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+    var oDiv = document.getElementById("div1");
+    document.onkeydown = function(e){//键盘事件对象
+        //alert(e.keyCode);
+        //左 37 上 38 右 39 下 40 del 46 enter 13  空格键 32 后退 8
+        var l = oDiv.offsetLeft;
+        var t = oDiv.offsetTop;
+        switch (e.keyCode){
+            case 37:
+                oDiv.style.left = l-10+"px";
+                break;
+            case 38:
+                oDiv.style.top = t-10+"px";
+                break;
+            case 39:
+                oDiv.style.left = l+10+"px";
+                break;
+            case 40:
+                oDiv.style.top = t+10+"px";
+                break;
+        }
+    }
+</script>

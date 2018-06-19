@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #div1{
+            width: 300px;
+            height: 300px;
+            background: green;
+            position: relative;
+            left:100px;
+            top:100px;
+        }
+        #mask{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left:0;
+            top:0;
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+
+</div>
+</body>
+</html>
+<script>
+    //需求：每次划过div1时在鼠标位置创建一个遮罩层div
+    var oDiv1 = document.getElementById("div1");
+    oDiv1.onmouseenter = function(e){
+        e = e||window.event;
+        var mask = document.createElement("div");
+        mask.id = "mask";
+        //鼠标的坐标 - div1到body的偏移量
+        mask.style.left = e.clientX - this.offsetLeft+"px";
+        mask.style.top = e.clientY - this.offsetTop+"px";
+        this.appendChild(mask);
+        /*mask.onmouseover =function(e){
+            e.stopPropagation();//阻止事件冒泡
+        }*/
+    }
+    /*mouseover的问题
+    1.会事件传播，红盒子事件触发时，绿盒子的事件也会被触发
+    2.从红盒子到绿盒子时，会触发绿盒子的mouseover事件，这个mouseover自己的问题
+
+     以上两个问题，改成mouseenter就解决了（红盒子不要在绿盒子往外面，在绿盒子外面上面两个问题还是有的）
+
+    mouseover ->mouseenter
+    mouseout ->mouseleave
+     */
+    oDiv1.onmousemove = function(){//鼠标移动时触发
+
+    }
+    oDiv1.onmouseleave = function(){//鼠标离开时触发
+
+    }
+</script>
