@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #lBox, #rBox {
+            width: 400px;
+            height: 400px;
+            box-shadow: 1px 1px 10px 0 #ccc;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+        }
+
+        #rBox {
+            left: 600px;
+            overflow: hidden;
+            display: none;
+        }
+
+        #rBox img {
+            width: 400%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        #lBox img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #mask {
+            width: 100px;
+            height: 100px;
+            background: yellow;
+            opacity: 0.4;
+            filter: alpha(opacity=40);
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            display: none;
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+<div id="lBox">
+    <img src="img/1.jpg">
+    <div id="mask"></div>
+</div>
+<div id="rBox">
+    <img src="img/2.jpg" alt="">
+</div>
+</body>
+</html>
+<script src="jquery-3.2.1.js"></script>
+<script>
+    var $lBox = $("#lBox"),
+        $mask = $("#mask"),
+        $rBox = $("#rBox"),
+        $rImg = $rBox.children("img");
+    //1.划过lBox时 ，mask显示，鼠标在mask盒子的中间位置(鼠标位置-大盒子偏移量-遮罩层宽度/高度的一半)
+    //2.在lBox移动时，遮罩层随着鼠标移动而移动，并设定好移动的边界
+    //3.离开lBox盒子时，遮罩层消失
+    $lBox.on("mouseenter", function (e) {
+        $mask.show();
+        $rBox.show();
+        computedPos(e);
+    }).on("mousemove", function (e) {
+        computedPos(e);
+    }).on("mouseleave", function () {
+        $mask.hide();
+        $rBox.hide();
+    });
+    //计算遮罩层的位置和右边大图移动的距离
+    function computedPos(e) {
+        var $offset = $lBox.offset();
+        var x = e.clientX - $offset.left - $mask.outerWidth() / 2;
+        var y = e.clientY - $offset.top - $mask.outerHeight() / 2;
+        var $maxLeft = $lBox.outerWidth() - $mask.outerWidth();
+        console.log($maxLeft);
+        var $maxTop = $lBox.outerHeight() - $mask.outerHeight();
+        x = x < 0 ? 0 : x > $maxLeft ? $maxLeft : x;
+        y = y < 0 ? 0 : y > $maxTop ? $maxTop : y;
+        $mask.css({
+            left: x,
+            top: y
+        });
+        $rImg.css({
+            left:-4*x,
+            top:-4*y
+        })
+    }
+
+</script>

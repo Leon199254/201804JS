@@ -3,8 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #lBox,#rBox {
+            width: 400px;
+            height: 400px;
+            box-shadow: 1px 1px 10px 0 #ccc;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+        }
+        #rBox {
+            left:600px;
+            overflow: hidden;
+            display: none;
+        }
+        #rBox img{
+            width: 400%;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+        #lBox img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #mask {
+            width: 100px;
+            height: 100px;
+            background: yellow;
+            opacity: 0.4;
+            filter: alpha(opacity=40);
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            display: none;
+            cursor: move;
+        }
+    </style>
 </head>
 <body>
-
+<div id="lBox">
+    <img src="img/1.jpg">
+    <div id="mask"></div>
+</div>
+<div id="rBox">
+    <img src="img/2.jpg" alt="">
+</div>
 </body>
 </html>
+<script>
+    //mask/lBox = rBox/大图
+    //100/400 = 400/1600
+    var lBox = document.getElementById("lBox");
+    var oMask = document.getElementById("mask");
+    var rBox = document.querySelector("#rBox");
+    var rImg = document.querySelector("#rBox>img");
+    //1.划过lBox时 ，mask显示，鼠标在mask盒子的中间位置
+    lBox.onmouseenter = function (e) {
+        e = e || window.event;
+        oMask.style.display = "block";
+        rBox.style.display = "block";
+        oMask.style.left = e.clientX - this.offsetLeft - oMask.offsetWidth / 2 + "px";
+        oMask.style.top = e.clientY - this.offsetTop - oMask.offsetHeight / 2 + "px";
+    };
+    //2.在lBox移动时，遮罩层随着鼠标移动而移动，并设定好移动的边界
+    lBox.onmousemove = function (e) {
+        e = e || window.event;
+        var x = e.clientX - this.offsetLeft - oMask.offsetWidth / 2;//遮罩层横向移动的距离
+        var y = e.clientY - this.offsetTop - oMask.offsetHeight / 2;//遮罩层纵向移动的距离
+        var maxLeft = this.offsetWidth - oMask.offsetWidth;
+        var maxTop = this.offsetHeight - oMask.offsetHeight;
+        var minLeft = 0;
+        var minTop = 0;
+        x = x < minLeft ? minLeft : x > maxLeft ? maxLeft : x;
+        y = y < minTop ? minTop : y > maxTop ? maxTop : y;
+        oMask.style.left = x+"px";
+        oMask.style.top = y+"px";
+        //右边图片分别向左边和上边移动距离 是左边遮罩层的4倍
+        rImg.style.left = -4*x+"px";
+        rImg.style.top = -4*y+"px";
+    };
+    //3.离开lBox盒子时，遮罩层消失
+    lBox.onmouseleave = function () {
+        oMask.style.display = "none";
+        rBox.style.display = "none";
+    }
+</script>

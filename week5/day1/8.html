@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js
+
+"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 400px;
+            height: 400px;
+            box-shadow: 1px 1px 10px 0 #ccc;/*!!!!!!!!!!!!!*/
+            position: absolute;
+            left: 100px;
+            top: 100px;
+        }
+        #box img{
+            width: 100%;
+            height: 100%;
+        }
+        #mask{
+            width: 100px;
+            height: 100px;
+            background: yellow;
+            opacity: 0.3;
+            filter: alpha(opacity=30);
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+            cursor: move;
+        }
+        #box2{
+            width: 400px;
+            height: 400px;
+            box-shadow: 1px 1px 10px 0 #ccc;/*!!!!!!!!!!!!!*/
+            position: absolute;
+            left: 600px;
+            top: 100px;
+            overflow: hidden;
+            display: none;
+        }
+        #box2 img{
+            width: 400%;
+            height: 400%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <img src="img/1.jpg" alt="">
+    <div id="mask"></div>
+</div>
+<div id="box2">
+    <img src="img/2.jpg" alt="">
+</div>
+</body>
+</html>
+<script>
+    var $oDiv = $("#box");
+    var $oMask = $("#mask");
+    var $oBox = $("#box2");
+    var $rImg = $oBox.find("img");
+    $oDiv.on("mouseenter",function (e) {
+        e = e || window.event;
+        $oMask.css({display:"block"});
+        $oBox.css({display:"block"});
+        $oMask.css({left:e.clientX - $oDiv.offset().left - $oMask.width()/2 });
+        $oMask.css({top:e.clientY - $oDiv.offset().top - $oMask.height()/2 })
+
+    })
+    //在box移动时，遮罩层随着鼠标移动而移动，并且设置好鼠标移动的边界
+
+    $oDiv.on("mousemove",function (e) {
+        e = e || window.event;
+        var $x = e.clientX - $oDiv.offset().left - $oMask.width()/2  ;
+        var $y = e.clientY - $oDiv.offset().top - $oMask.height()/2 ;
+        var $minLeft = 0;
+        var $minTop = 0;
+        var $maxLeft = $oDiv.offset().width - $oMask.offset().width;
+        var $maxTop = $oDiv.offset().height - $oMask.offset().height;
+        $x = $x < $minLeft ? $minLeft : $x > $maxLeft ? $maxLeft : $x;
+        $y = $y < $minTop ? $minTop : $y > $maxTop ? $maxTop : $y;
+        $oMask.css({left:$x});
+        $oMask.css({top:$y});
+        $rImg.css({left:-4*$x});
+        $rImg.css({top:-4*$y});
+
+    })
+    $oDiv.on("mouseleave",function (e) {
+        $oMask.css({display:"none"});
+        $oBox.css({display:"none"});
+    })
+</script>
