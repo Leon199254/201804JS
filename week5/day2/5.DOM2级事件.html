@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+    var oDiv = document.getElementById("div1");
+    //DOM0级和DOM2级事件绑定的区别
+    function fn1(){
+        alert(1);
+    }
+    function fn2(){
+        alert(2);
+    }
+    function fn3(){
+        alert(3);
+    }
+
+
+
+    //DOM0级事件绑定：同一个元素相同事件不可以绑定多个方法，后面的方法会覆盖之前绑定的方法 DOMContentLoaded
+    /*oDiv.onclick = fn1;
+    oDiv.onclick = fn2;
+    oDiv.onclick = fn3;*/
+
+    //同一个元素相同事件可以绑定多个方法，执行的顺序就是绑定的顺序
+    /*oDiv.addEventListener("click",fn1,false);
+    oDiv.addEventListener("click",fn2,false);
+    oDiv.addEventListener("click",fn3,false);*/
+
+    //标准浏览器下：
+    //这三个参数若完全相同，则表示重复绑定，只会执行一次，不会重复执行
+    //这三个参数有一个不一样，则表示不是重复绑定，就会执行多次
+    //this是绑定的元素
+    /*oDiv.addEventListener("click",fn1,false);//绑定方法
+    oDiv.addEventListener("click",fn2,false);
+    oDiv.removeEventListener("click",fn1,false);*///移除绑定的方法
+
+
+    //低版本IE浏览器下：  执行顺序是乱的，没有解决重复绑定  this是window
+    //低版本的IE浏览器在事件池里封装的代码有问题
+    /*oDiv.attachEvent("onclick",fn1);
+    oDiv.attachEvent("onclick",fn2);
+    oDiv.detachEvent("onclick",fn1);*/
+
+    function on(ele,type,fn){
+        if(ele.addEventListener){
+           ele.addEventListener(type,fn,false)
+        }else{
+           ele.attachEvent("on"+type,fn);
+        }
+    }
+    function off(ele,type,fn){
+        if(ele.removeEventListener){
+            ele.removeEventListener(type,fn,false)
+        }else{
+            ele.detachEvent("on"+type,fn);
+        }
+    }
+    on(oDiv,"click",fn1);
+    on(oDiv,"click",fn2);
+    off(oDiv,"click",fn1);
+
+
+</script>

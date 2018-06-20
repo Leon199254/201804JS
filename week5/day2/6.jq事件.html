@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <p class="a1">111</p>
+    <p>2222</p>
+    <span>3333</span>
+    <input type="radio" value="0" name="sex" checked>男
+    <input type="radio" value="1" name="sex">女
+
+</div>
+</body>
+</html>
+<script src="jquery-3.2.1.js"></script>
+<script>
+    //jq 绑定
+   /* $("#div1").on("click",".a1",{"zf":9},function(e){
+        console.log(e.data);
+    })*/
+   function fn1(){
+       alert(1);
+   }
+    function fn2(){
+        alert(2);
+    }
+    $("#div1").on("click","p",fn1);
+    $("#div1").on("click","p",fn2);
+   //off
+    $("#div1").off("click","p",fn1);
+
+    $("input[type='radio']").change(function(){
+        console.log($(this).val());
+    })
+
+
+</script>

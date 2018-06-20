@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left:100px;
+            top:100px;
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script src="jquery-3.2.1.js"></script>
+<script>
+    //按下鼠标  拖拽开始  mousedown
+    //按着鼠标移动 拖拽中  mousemove
+    //松开鼠标时  拖拽结束 mouseup
+    $(function ($) {
+        var dragStart = function (e) {
+            //按下时需要记录盒子的位置以及鼠标的坐标
+            /*$(this).attr({x:1,y:2}) jq添加属性的方式*/
+            this.x = $(this).offset().left;//盒子的左偏移量
+            this.y = $(this).offset().top;
+            this.mx = e.clientX;//鼠标的坐标
+            this.my = e.clientY;
+            this.DRAG_MOVE =dragMove.bind(this);
+            this.DRAG_UP = dragUp.bind(this);
+            $(document).on("mousemove",this.DRAG_MOVE );
+            $(document).on("mouseup", this.DRAG_UP);
+        };
+
+        var dragMove = function (e) {
+            //盒子现在的位置 = 之前的位置+鼠标移动的距离（现在鼠标的坐标-按下时鼠标的坐标）
+            var posX = this.x + (e.clientX - this.mx);
+            var posY = this.y + (e.clientY - this.my);
+            $(this).css({
+                left:posX,
+                top:posY
+            })
+        };
+
+        var dragUp = function () {
+            $(document).off("mousemove",this.DRAG_MOVE);
+            $(document).off("mouseup",this.DRAG_UP);
+        };
+
+        $("#div1").on("mousedown", dragStart)
+
+        //拖拽速度很快时，盒子会丢失鼠标，因为浏览器绑定事件有反应时间，若太快则反应不过来
+        //绑定时 拿跟绳子将盒子和鼠标绑定一起  this.setCapture()
+        //移除时 绳子和鼠标解绑    this.releaseCapture()
+        //IE和火狐支持，谷歌不支持
+        //另一种解决方案 把事件绑定在文档上
+
+    })
+
+</script>

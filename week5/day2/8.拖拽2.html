@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #div1 {
+            width: 150px;
+            height: 150px;
+            background: -webkit-radial-gradient(circle,paleturquoise 0%,paleturquoise 20%,pink 20%,pink 40%,palegreen 40%,palegreen 60%,papayawhip 60%,papayawhip 100%);
+            background: radial-gradient(circle,paleturquoise 0%,paleturquoise 20%,pink 20%,pink 40%,palegreen 40%,palegreen 60%,plum 60%,plum 100%);
+            position: absolute;
+            left:100px;
+            top:100px;
+            cursor: move;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script src="jquery-3.2.1.js"></script>
+<script>
+    $(function ($) {
+        var dragStart = function (e) {
+            this.x = $(this).offset().left;
+            this.y = $(this).offset().top;
+            this.mx = e.clientX;
+            this.my = e.clientY;
+            this.DRAG_MOVE =dragMove.bind(this);
+            this.DRAG_UP = dragUp.bind(this);
+            $(document).on("mousemove",this.DRAG_MOVE );
+            $(document).on("mouseup", this.DRAG_UP);
+            clearTimeout(this.flyTimer);
+        };
+
+        var dragMove = function (e) {
+            var posX = this.x + (e.clientX - this.mx);
+            var posY = this.y + (e.clientY - this.my);
+            $(this).css({
+                left:posX,
+                top:posY
+            })
+           if(!this.prevX){//上一次鼠标的坐标
+               this.prevX = 0;
+           }
+           //若存在则求出盒子移动的距离
+            this.speed = e.clientX - this.prevX;
+           //现在鼠标的坐标成为了盒子移动时上一次鼠标的坐标
+            this.prevX = e.clientX;
+        };
+
+        var dragUp = function () {
+            $(document).off("mousemove",this.DRAG_MOVE);
+            $(document).off("mouseup",this.DRAG_UP);
+            fly.call(this);
+        };
+
+        $("#div1").on("mousedown", dragStart);
+
+        function fly(){
+            window.clearTimeout(this.flyTimer);
+            //以拖拽时的距离为速度
+            this.speed*=0.98;//值越大摩擦力越小，值越小摩擦力越大
+            var x = this.offsetLeft+this.speed;
+            var maxLeft = $(document).innerWidth()-$(this).innerWidth();
+            if(x>maxLeft){
+                this.speed*=-1; //反向运动
+                x = maxLeft;
+            }
+            if(x<0){
+                this.speed*=-1;
+                x = 0;
+            }
+            $(this).css("left",x);
+           //this.speed绝对值小于0.5时说明动画已经停止了
+            if(Math.abs(this.speed)>0.5){
+                this.flyTimer = window.setTimeout(fly.bind(this),30);//方法内部调用方法本身
+            }
+
+        }
+    })
+    //1.以鼠标移动的距离为速度  2.动画停止的条件
+
+</script>

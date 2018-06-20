@@ -21,6 +21,10 @@ e.stopPropagation() e.cancelBubble = true  阻止事件冒泡
 事件委托 ->利用下事件冒泡
 
 
+DOM2级事件绑定：
+- 标准浏览器下 ele.addEventListener(type,fn,false)
+- IE浏览器下 ele.attachEvent("on"+type,fn);
+
 
 
 
