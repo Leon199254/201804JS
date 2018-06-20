@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .box {
+            width: 500px;
+            background: -webkit-linear-gradient(-45deg, palegreen, palegoldenrod, pink, paleturquoise);
+            background: linear-gradient(-45deg, palegreen, palegoldenrod, pink, paleturquoise);
+            font-family: "Microsoft yahei";
+            font-size: 16px;
+        }
+
+        ul li {
+            line-height: 40px;
+        }
+
+        ul li span.open:before {
+            content: "-"; /*展开*/
+            color: red;
+            font-weight: bold;
+            font-size: 25px;
+        }
+
+        ul li span.close:before {
+            content: "+"; /*收起来*/
+            color: red;
+            font-weight: bold;
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <ul>
+        <li><span>第一级菜单</span>
+            <ul>
+                <li><span>第二级菜单</span>
+                    <ul>
+                        <li><span>第三级菜单</span>
+                            <ul>
+                                <li><span>第四级菜单</span></li>
+                                <li><span>第四级菜单</span></li>
+                            </ul>
+                        </li>
+                        <li><span>第三级菜单</span></li>
+                        <li><span>第三级菜单</span></li>
+                        <li><span>第三级菜单</span></li>
+                    </ul>
+                </li>
+                <li><span>第二级菜单</span>
+                    <ul>
+                        <li><span>第三级菜单</span></li>
+                        <li><span>第三级菜单</span></li>
+                        <li><span>第三级菜单</span></li>
+                        <li><span>第三级菜单</span></li>
+                    </ul>
+                </li>
+                <li><span>第二级菜单</span></li>
+                <li><span>第二级菜单</span></li>
+            </ul>
+
+        </li>
+        <li><span>第一级菜单</span></li>
+        <li><span>第一级菜单</span></li>
+        <li><span>第一级菜单</span></li>
+    </ul>
+</div>
+</body>
+</html>
+<script src="jquery-3.2.1.js"></script>
+<script>
+    //1.有子菜单的默认是收起来的
+    //2.点击标题时，若是展开的，则收起来，若是收起来的，则展开
+    var $oSpans = $(".box ul li  span");
+    $oSpans.each(function (index, item) {
+        var $oUl = $(item).next("ul");
+        if ($oUl && $oUl.length > 0) {
+            $oUl.hide();
+            item.className = "close";
+        } else {
+            item.className = "open";
+        }
+    })
+    $(document.body).on("click","span",function(){
+        var $oUl = $(this).next("ul");
+        if($oUl && $oUl.length > 0){
+           if(!$oUl.is(":visible")){
+               $oUl.show();
+               this.className = "open";
+           } else{
+               $oUl.hide();
+               this.className = "close";
+               var $oUls = $oUl.find("ul");
+               $oUls.each(function(){
+                   $(this).hide();
+                   $(this).prev("span").get(0).className ="close";
+               })
+           }
+        }
+    })
+
+</script>

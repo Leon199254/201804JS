@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="list">
+    <li>11</li>
+    <li>22</li>
+    <li>33</li>
+    <li>44</li>
+    <p>aaaaa</p>
+</ul>
+</body>
+</html>
+<script>
+    //一个一个绑定的方式非常耗性能，利用事件冒泡的机制
+    var oUl = document.getElementById("list");
+    /*var oLis = oUl.getElementsByTagName("li");
+    for(var i = 0;i<oLis.length;i++){
+        oLis[i].onclick = function(){
+            console.log(this.innerHTML);
+        }
+    }*/
+
+    //不是一个一个给每个元素绑定，而是利用事件传播机制，直接绑定给祖先元素，把事件绑定委托给祖先元素，这就叫事件委托 ，通过事件源来判断操作的元素
+    //1.高性能解决事件绑定的方案
+    //2.能解决动态绑定的问题
+    document.body.onclick = function(e){//任何元素点击时，都是触发body的click事件，如何区分操作的元素->事件源
+        if(e.target.nodeName == "LI"){
+            console.log(e.target.innerHTML);
+        }
+    }
+
+    //动态数据是没有之前绑定的行为
+    var oLi = document.createElement("li");
+    oLi.innerHTML = "5555";
+    oUl.appendChild(oLi);
+</script>

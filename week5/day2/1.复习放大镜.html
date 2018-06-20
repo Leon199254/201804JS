@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #lBox, #rBox {
+            width: 400px;
+            height: 400px;
+            box-shadow: 1px 1px 10px 2px #ddd;
+            position: absolute;
+            left: 100px;
+            top: 50px;
+            overflow: hidden;
+
+        }
+
+        #rBox {
+            left: 600px;
+            display: none;
+        }
+
+        #lBox img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #mask {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0.4;
+            filter: alpha(opacity=40);
+            background: yellow;
+            display: none;
+        }
+
+        #rBox img {
+            width: 400%;
+            height: 400%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="lBox">
+    <img src="img/1.jpg">
+    <div id="mask"></div>
+</div>
+<div id="rBox">
+    <img src="img/2.jpg">
+</div>
+</body>
+</html>
+<script src="jquery-3.2.1.js"></script>
+<script>
+    //划过时 让遮罩层显示 右边盒子显示 设置遮罩层的位置（鼠标在遮罩层的中间位置）
+    //鼠标移动时 遮罩层随着鼠标移动，并且设置边界 右边的大图移动也要跟着移动
+    //鼠标划出时 遮罩层和右边的盒子都消失
+    var $lBox = $("#lBox"),
+        $rBox = $("#rBox"),
+        $mask = $("#mask"),
+        $rImg = $rBox.children("img");
+
+    $lBox.on("mouseover", function (e) {
+        $rBox.show();
+        $mask.show().css({
+            left: e.clientX - $(this).offset().left - $mask.outerWidth() / 2,
+            top: e.clientY - $(this).offset().top - $mask.outerHeight() / 2
+        })
+
+    }).on("mousemove", function (e) {
+        var x = e.clientX - $(this).offset().left - $mask.outerWidth() / 2;
+        var y = e.clientY - $(this).offset().top - $mask.outerHeight() / 2;
+        var maxLeft = $(this).outerWidth() - $mask.outerWidth();
+        var maxTop = $(this).outerHeight() - $mask.outerHeight();
+        //边界处理
+        x = x < 0 ? 0 : x > maxLeft ? maxLeft : x;
+        y = y < 0 ? 0 : y > maxTop ? maxTop : y;
+        $mask.css({
+            left:x,
+            top:y
+        });
+        //设置右边大图移动的距离
+        $rImg.css({
+            left:-4*x,
+            top:-4*y
+        })
+
+
+    }).on("mouseout", function () {
+        $mask.hide();
+        $rBox.hide();
+    })
+
+
+</script>
