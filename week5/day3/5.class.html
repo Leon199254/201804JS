@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    /*function Fn(name,age){//类
+        this.name = name;
+        this.age = age;
+    }
+    Fn.prototype.writeCss = function () {//类的原型上添加方法
+        console.log("writeCss");
+    }
+    var f = new Fn("lily",18);//必须通过new运行函数，这个函数才是类
+    console.log(f.name);*/
+
+
+    class Fn{
+        constructor(name,age){//构造函数
+            this.name = name;
+            this.age = age;
+        }
+        writeCss(){//原型上的方法
+           console.log("writeCss");
+        }
+        static  a(){ //静态方法  类.a
+            console.log("a")
+        }
+    }
+    let f = new Fn("lily",18);
+    console.log(f);
+   /* console.log(f.name);
+    f.writeCss()
+    Fn.a();*/
+
+
+</script>

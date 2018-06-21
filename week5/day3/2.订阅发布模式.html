@@ -12,80 +12,62 @@
     //参加结婚这件事 7月1日
     //做计划： 1.准备红包 2.喝喜酒  3.抢新娘
 
-    //烧水完成后
+    //烧水这件事
     //做计划 1.喝水 2.泡面  3.洗脸
 
-    function on(ele,type,fn){//做计划  事件池放了所有需要执行的方法，不能重复绑定
-        //1.定义一个数组
-      // ele["bind"+type]   //定义名称技巧，为了区别各个事件
-        if(!ele["bind"+type]){
-            ele["bind"+type] = [];
+    function on(ele,type,fn){//添加计划
+        //[] 用来添加计划
+        if(!ele["a"+type]){
+            ele["a"+type] =[];
         }
-        //判断下数组中是否已经有这个方法了
-        var a =  ele["bind"+type];
-        for(var i = 0;i<a.length;i++){
-            if(a[i]==fn){
+        var ary = ele["a"+type];
+        for(var i = 0;i<ary.length;i++){
+            if(ary[i]==fn){
                 return;
             }
         }
-        ele["bind"+type].push(fn);
+        ary.push(fn)
     }
-    function fire(type){//执行计划
-        //拿到on创建的数组，并且每个方法执行
-        var a = this["bind"+type];
-        for(var i = 0;i<a.length;i++){
-            if(typeof a[i]=="function"){
-                a[i].call(this);
+    function  fire(type) { //执行计划
+        //从事件池中拿出每个方法执行
+        var ary = this["a"+type];
+        for(var i = 0;i<ary.length;i++){
+            if(typeof ary[i]==="function"){
+                ary[i].call(this);
             }else{
-                a.splice(i,1);
+                ary.splice(i,1);
                 i--;
             }
         }
     }
-
     function off(ele,type,fn){//取消计划
-        var a = ele["bind"+type];
-        for(var i = 0;i<a.length;i++){
-            if(a[i]==fn){
-                a[i] = null;
+        var ary = ele["a"+type];
+        for(var i = 0;i<ary.length;i++){
+            if(ary[i]==fn){
+                ary[i] = null;
             }
         }
     }
-
     function fn1(){
-        console.log("准备红包");
+        console.log("准备红包")
     }
     function fn2(){
         console.log("喝喜酒")
     }
     function fn3(){
-        console.log("抢新娘");
+        console.log("抢新娘")
     }
-    function drink(){
-        console.log("喝水")
-    }
-    function eat(){
-        console.log("泡面")
-    }
-    function wash(){
-        console.log("洗脸")
-    }
-    //自定义事件 系统事件
     var oDiv = document.getElementById("div1");
     on(oDiv,"参加婚礼",fn1);
     on(oDiv,"参加婚礼",fn2);
     on(oDiv,"参加婚礼",fn3);
     off(oDiv,"参加婚礼",fn3);
-    on(oDiv,"烧水",drink);
-    on(oDiv,"烧水",eat);
-    on(oDiv,"烧水",wash);
 
-    window.setTimeout(function(){//假设一秒后是7月1
+    window.setTimeout(function(){//假设2秒后是7月1日
         fire.call(oDiv,"参加婚礼");
-    },1000)
-   window.setTimeout(function(){//假设一秒后是7月1
-        fire.call(oDiv,"烧水")
-    },3000)
+    },2000);
+
+
 
 
 

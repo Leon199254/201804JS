@@ -17,21 +17,9 @@
       <file leaf-file-name="1.拖拽.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/1.拖拽.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="21" column="21" lean-forward="true" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
+            <state relative-caret-position="169">
+              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="21" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="drag.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/drag.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="24" column="12" lean-forward="false" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
-              <folding>
-                <element signature="e#1260#1775#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -40,8 +28,8 @@
         <entry file="file://$PROJECT_DIR$/read.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="443">
-                <caret line="13" column="8" lean-forward="false" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
+              <first_editor relative-caret-position="663">
+                <caret line="16" column="26" lean-forward="false" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -49,12 +37,92 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2.订阅发布模式.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/2.订阅发布模式.html">
+      <file leaf-file-name="5.class.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/5.class.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="17" column="17" lean-forward="true" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+            <state relative-caret-position="120">
+              <caret line="25" column="27" lean-forward="true" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="6.extends.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/6.extends.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="520">
+              <caret line="40" column="24" lean-forward="true" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="7.面向对象拖拽.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/7.面向对象拖拽.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="491">
+              <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="drag3.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/drag3.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="39">
+              <caret line="4" column="9" lean-forward="true" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="event.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/event.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-327">
+              <caret line="3" column="22" lean-forward="false" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="3.拖拽-自定义事件库.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/3.拖拽-自定义事件库.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="261">
+              <caret line="82" column="9" lean-forward="false" selection-start-line="82" selection-start-column="9" selection-end-line="82" selection-end-column="9" />
+              <folding>
+                <element signature="e#860#1014#0" expanded="false" />
+                <element signature="e#1033#1548#0" expanded="false" />
+                <element signature="e#1568#2235#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="4.jq订阅发布模式.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/4.jq订阅发布模式.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="496">
+              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="drag2.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/drag2.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="39">
+              <caret line="13" column="17" lean-forward="false" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+              <folding>
+                <marker date="1529567951778" expanded="true" signature="13:967" ph="{...}" />
+                <marker date="1529567951778" expanded="true" signature="46:457" ph="{...}" />
+                <marker date="1529567951778" expanded="true" signature="489:723" ph="{...}" />
+                <marker date="1529567951778" expanded="true" signature="609:664" ph="{&quot;left&quot;: posX...}" />
+                <marker date="1529567951778" expanded="true" signature="753:922" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -64,8 +132,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -76,13 +144,28 @@
         <option value="$PROJECT_DIR$/1.拖拽.html" />
         <option value="$PROJECT_DIR$/drag.js" />
         <option value="$PROJECT_DIR$/read.md.html" />
-        <option value="$PROJECT_DIR$/read.md" />
         <option value="$PROJECT_DIR$/2.订阅发布模式.html" />
+        <option value="$PROJECT_DIR$/drag2.js" />
+        <option value="$PROJECT_DIR$/event.js" />
+        <option value="$PROJECT_DIR$/3.拖拽-自定义事件库.html" />
+        <option value="$PROJECT_DIR$/4.jq订阅发布模式.html" />
+        <option value="$PROJECT_DIR$/read.md" />
+        <option value="$PROJECT_DIR$/5.class.html" />
+        <option value="$PROJECT_DIR$/6.extends.html" />
+        <option value="$PROJECT_DIR$/drag3.js" />
+        <option value="$PROJECT_DIR$/7.面向对象拖拽.html" />
       </list>
     </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
@@ -124,11 +207,19 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="Settings.JavaScript.Linters.JSHint" />
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="JavaScriptPreferStrict" value="false" />
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Desktop\day3" />
+      <recent name="C:\Users\Administrator\Desktop\day3dr" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -152,18 +243,18 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1529544960872</updated>
-      <workItem from="1529544973799" duration="11428000" />
+      <workItem from="1529544973799" duration="21294000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11428000" />
+    <option name="totallyTimeSpent" value="21294000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13988096" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.140625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -192,29 +283,114 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/1.拖拽.html">
+    <entry file="file://$PROJECT_DIR$/2.订阅发布模式.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="21" column="21" lean-forward="true" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
+        <state relative-caret-position="-24">
+          <caret line="40" column="9" lean-forward="false" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../day3dr/DRAG.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/drag.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="24" column="12" lean-forward="false" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+        <state relative-caret-position="106">
+          <caret line="39" column="33" lean-forward="false" selection-start-line="38" selection-start-column="3" selection-end-line="39" selection-end-column="33" />
           <folding>
-            <element signature="e#1260#1775#0" expanded="false" />
+            <marker date="1529553514871" expanded="true" signature="13:2442" ph="{...}" />
+            <marker date="1529553514871" expanded="true" signature="18:95" ph="//..." />
+            <marker date="1529553514871" expanded="true" signature="127:523" ph="{...}" />
+            <marker date="1529553514871" expanded="true" signature="128:166" ph="//..." />
+            <marker date="1529553514871" expanded="true" signature="555:932" ph="{...}" />
+            <marker date="1529553514871" expanded="true" signature="556:602" ph="//..." />
+            <marker date="1529553514871" expanded="true" signature="721:776" ph="{&quot;left&quot;: posX...}" />
+            <marker date="1529553514871" expanded="true" signature="802:847" ph="{...}" />
+            <marker date="1529553514871" expanded="true" signature="961:1130" ph="{...}" />
+            <marker date="1529553514871" expanded="false" signature="1260:1775" ph="{...}" />
+            <marker date="1529553514871" expanded="true" signature="1478:1548" ph="{...}" />
+            <marker date="1529553514871" expanded="true" signature="1564:1622" ph="{...}" />
+            <marker date="1529553514871" expanded="true" signature="1691:1769" ph="{...}" />
+            <marker date="1529553514871" expanded="true" signature="1830:2440" ph="{...}" />
+            <marker date="1529553514871" expanded="true" signature="1897:1940" ph="{...}" />
+            <marker date="1529553514871" expanded="true" signature="1944:1987" ph="{...}" />
+            <marker date="1529553514871" expanded="true" signature="2159:2268" ph="{...}" />
+            <marker date="1529553514871" expanded="true" signature="2272:2305" ph="{...}" />
+            <marker date="1529553514871" expanded="true" signature="2354:2433" ph="{...}" />
+            <marker date="1529553514871" expanded="true" signature="2445:2487" ph="//..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/drag2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="39">
+          <caret line="13" column="17" lean-forward="false" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+          <folding>
+            <marker date="1529567951778" expanded="true" signature="13:967" ph="{...}" />
+            <marker date="1529567951778" expanded="true" signature="46:457" ph="{...}" />
+            <marker date="1529567951778" expanded="true" signature="489:723" ph="{...}" />
+            <marker date="1529567951778" expanded="true" signature="609:664" ph="{&quot;left&quot;: posX...}" />
+            <marker date="1529567951778" expanded="true" signature="753:922" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/3.拖拽-自定义事件库.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="82" column="9" lean-forward="false" selection-start-line="82" selection-start-column="9" selection-end-line="82" selection-end-column="9" />
+          <folding>
+            <element signature="e#860#1014#0" expanded="false" />
+            <element signature="e#1033#1548#0" expanded="false" />
+            <element signature="e#1568#2235#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/4.jq订阅发布模式.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/5.class.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="25" column="27" lean-forward="true" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1.拖拽.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/drag3.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="39">
+          <caret line="4" column="9" lean-forward="true" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/read.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="443">
-            <caret line="13" column="8" lean-forward="false" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
+          <first_editor relative-caret-position="663">
+            <caret line="16" column="26" lean-forward="false" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
             <folding />
           </first_editor>
           <second_editor />
@@ -227,10 +403,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2.订阅发布模式.html">
+    <entry file="file://$PROJECT_DIR$/event.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="17" column="17" lean-forward="true" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+        <state relative-caret-position="-327">
+          <caret line="3" column="22" lean-forward="false" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/7.面向对象拖拽.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/6.extends.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="40" column="24" lean-forward="true" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
           <folding />
         </state>
       </provider>

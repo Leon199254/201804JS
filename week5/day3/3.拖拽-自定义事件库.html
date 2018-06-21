@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #div1{
+            width: 150px;
+            height: 150px;
+            background: -webkit-radial-gradient(circle,paleturquoise 0%,paleturquoise 20%,pink 20%,pink 40%,palegreen 40%,palegreen 60%,papayawhip 60%,papayawhip 100%);
+            background: radial-gradient(circle,paleturquoise 0%,paleturquoise 20%,pink 20%,pink 40%,palegreen 40%,palegreen 60%,plum 60%,plum 100%);
+            position: absolute;
+            left:100px;
+            top:100px;
+            cursor: move;
+            border-radius: 50%;
+
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script src="jquery-3.2.1.js"></script>
+<script src="event.js"></script>
+<script src="drag2.js"></script>
+<script>
+    function getSpeed(e) {
+        if(!this.prevX){
+            this.prevX = this.mx;
+        };
+        this.speed = e.clientX - this.prevX;
+        this.prevX = e.clientX;
+    }
+    function fly(){
+        clearTimeout(this.flyTimer);//防止定时器积累
+        this.speed*=0.98;
+        var x = this.offsetLeft+this.speed; //盒子现在的位置
+        var maxLeft = $(document).innerWidth()-$(this).innerWidth();
+        if(x>maxLeft){
+            x = maxLeft;
+            this.speed*=-1;//反向运动
+        }
+        if(x<0){
+            x = 0;
+            this.speed*=-1;
+        }
+        $(this).css("left",x);
+        if(Math.abs(this.speed)>=0.5){
+            this.flyTimer =  window.setTimeout(fly.bind(this),30);
+        }
+    }
+    function drop(){
+        if(!this.flag) this.flag = 0;
+        clearTimeout(this.dropTimer);
+        if(!this.dropSpeed){
+            this.dropSpeed = 9.8;
+        }else{
+            this.dropSpeed +=9.8;
+        }
+        this.dropSpeed*=0.98;
+        var y = this.offsetTop + this.dropSpeed;
+        var maxTop = $(document).innerHeight() - $(this).innerHeight();
+        if(y>maxTop){ //如果连续执行了两次，说明小球已经停下来
+            y = maxTop;
+            this.dropSpeed*=-1;
+            this.flag++;
+        }else{
+            this.flag = 0;
+        }
+        $(this).css("top",y);
+        if(this.flag<2){
+            this.dropTimer = window.setTimeout(drop.bind(this),30);
+        }
+
+    }
+    var oDiv = document.getElementById("div1");
+    on(oDiv,"move",getSpeed);
+    on(oDiv,"end",fly);
+    on(oDiv,"end",drop);
+
+</script>

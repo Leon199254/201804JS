@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script src="jquery-3.2.1.js"></script>
+<script>
+    var $dragStart = $.Callbacks();//事件池 返回值还用来表示事件标识
+    var $dragMove = $.Callbacks();
+    var $dragEnd = $.Callbacks();
+    function fn1(data){
+        console.log("1"+data);
+    }
+    function fn2(data) {
+        console.log("2"+data);
+    }
+    function fn3() {
+        console.log("3")
+    }
+    $dragStart.add(fn1);    //on
+    $dragStart.add(fn2);
+    /*$dragStart.remove(fn2) */ //off
+    $dragStart.fire("aa");   //fire
+    $dragMove.add(fn3);//添加计划
+    $dragMove.fire();
+
+</script>

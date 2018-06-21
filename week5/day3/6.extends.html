@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    /*function F(name){
+        this.name = name;
+    }
+    F.prototype.a = function(){console.log("a")};
+    function S(name,age){
+        this.age = age;
+        F.call(this,name);//子类调用父类私有的属性
+    }
+    //S.prototype.__proto__ = F.prototype;
+    S.prototype = Object.create(F.prototype);//子类调用父类原型上的属性
+    var s = new S("lily",18);
+    //console.log(s.name);
+    s.a();*/
+
+    //es6继承
+    class F{
+        constructor(name){
+            this.name = name;
+        }
+        a(){
+            console.log("a");
+        }
+        static c(){
+            console.log("c");
+        }
+    }
+
+    class S extends F{ //S类是F类的子类
+        constructor(name,age){
+            super(name); //写了extends，super()必须写  相当于F.call(this,name);
+            this.age = age; //S类的私有属性
+        }
+        b(){
+            console.log("b");
+        }
+    }
+    //es6 继承：私有，公有 ，静态
+    var s = new S("lily",18);
+    //console.log(s.name);
+    //s.a();
+    //S.c();
+    console.dir(s);
+
+
+
+</script>
