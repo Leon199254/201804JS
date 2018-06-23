@@ -21,19 +21,28 @@
             top:0;
             cursor: move;
         }
+        .inner{
+            width: 100px;
+            height: 100px;
+            background: #ccc;
+            position: relative;
+            left: 200px;
+            top: 200px;
+        }
     </style>
 </head>
 <body>
 <div id="div1">
-
+    <div class="inner"></div>
 </div>
 </body>
 </html>
 <script>
     //需求：每次划过div1时在鼠标位置创建一个遮罩层div
     var oDiv1 = document.getElementById("div1");
-    oDiv1.onmouseenter = function(e){
+    oDiv1.onmouseover = function(e){
         e = e||window.event;
+        console.log(e)
         var mask = document.createElement("div");
         mask.id = "mask";
         //鼠标的坐标 - div1到body的偏移量

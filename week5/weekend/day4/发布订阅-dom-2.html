@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$珠峰培训$</title>
+</head>
+<body>
+<div id='div1'>珠峰培训</div>
+</body>
+</html>
+<script>
+    var oDiv = document.getElementById('div1');
+    function on(ele,type,fn) {//订阅
+        ele[type] = ele[type] || [];
+        ele[type].push(fn);
+    }
+    function fire(ele,type) {//发布
+        ele[type] = ele[type] || [];//前边成立给前边的值，不成立给后边的值
+        ele[type].forEach((item)=>{
+            item && item();
+        })
+    }
+    function off(ele,type,fn) {//取消订阅
+       let n = ele[type].indexOf(fn);
+       ele[type][n] = null;
+    }
+
+
+    function f1() {
+        console.log(1)
+    }
+    function f2() {
+        console.log(2)
+    }
+    function f3() {
+        console.log(3)
+    }
+    on(oDiv,'myfn',f1);
+    on(oDiv,'myfn',f2);
+    on(oDiv,'myfn2',f3);
+
+    fire(oDiv,'myfn');//1  2
+
+
+    off(oDiv,'myfn',f1);
+    fire(oDiv,'myfn');//2
+</script>  

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$珠峰培训$</title>
+    <style type="text/less">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .imgBox1{
+            width: 300px;
+            height: 100px;
+            margin: auto;
+            overflow: hidden;
+            margin: 10px;
+            img{
+                width: 100%;
+                height: 100%;
+                /*margin: 10px;*/
+            }
+        }
+        .imgBox2{
+            position: absolute;
+            width: 600px;
+            height: 200px;
+            display: none;
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+    </style>
+    <script src="../js/less.js"></script>
+</head>
+<body>
+<div class="imgBox1">
+    <img src="../img/pic0.jpg" alt="">
+</div>
+<div class="imgBox1">
+    <img src="../img/pic1.jpg" alt="">
+</div>
+<div class="imgBox1">
+    <img src="../img/pic2.jpg" alt="">
+</div>
+<div class="imgBox2">
+    <img src="../img/pic0.jpg" alt="">
+</div>
+<div class="imgBox2">
+    <img src="../img/pic1.jpg" alt="">
+</div>
+<div class="imgBox2">
+    <img src="../img/pic2.jpg" alt="">
+</div>
+</body>
+</html>
+<script>
+    /*
+    * 鼠标跟随
+    * 鼠标划入小图 让大图显示  划出大图消失
+    * 当鼠标再小图上滑动时  我们让大图跟着小图移动就可以了
+    *
+    * */
+    var imgBox1 = document.getElementsByClassName('imgBox1');
+    var imgBox2 = document.getElementsByClassName('imgBox2');
+    // imgBox1.onmouseenter = function () {
+    //     imgBox2.style.display = 'block';
+    // };
+    // imgBox1.onmousemove = function (e) {
+    //     var t = e.clientY + 20;
+    //     var l = e.clientX + 20;
+    //     imgBox2.style.top = t + 'px';
+    //     imgBox2.style.left = l + 'px';
+    //     //现在已经基本实现 鼠标跟随；但是 还有一个闪的问题（）
+    // };
+    // imgBox1.onmouseleave = function () {
+    //     imgBox2.style.display = 'none';
+    // }
+    function move(litBox,bigBox) {
+        litBox.onmouseenter = function () {
+            bigBox.style.display = 'block';
+        };
+        litBox.onmousemove = function (e) {
+            var t = e.clientY + 20;
+            var l = e.clientX + 20;
+            bigBox.style.top = t + 'px';
+            bigBox.style.left = l + 'px';
+            //现在已经基本实现 鼠标跟随；但是 还有一个闪的问题（）
+        };
+        litBox.onmouseleave = function () {
+            bigBox.style.display = 'none';
+        }
+    }
+    for(var i = 0 ; i < imgBox1.length; i++){
+        move(imgBox1[i],imgBox2[i])
+    }
+
+</script>  

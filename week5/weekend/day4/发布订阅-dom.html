@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$珠峰培训$</title>
+</head>
+<body>
+<div id='div1'>珠峰培训</div>
+</body>
+</html>
+<script>
+    var oDiv = document.getElementById('div1');
+    function on(ele,fn) {
+        ele.ary = ele.ary || [];
+        ele.ary.push(fn)
+    }
+    function fire(ele) {
+        ele.ary = ele.ary || [];
+        ele.ary.forEach((item)=>{
+            item && item()
+        })
+    }
+    function off(ele,fn) {
+        let n = ele.ary.indexOf(fn);
+        ele.ary[n] = null;
+    }
+
+
+    function f1() {
+        console.log(1)
+    }
+    function f2() {
+        console.log(2)
+    }
+    function f3() {
+        console.log(3)
+    }
+    on(oDiv,f1);
+    on(oDiv,f2);
+    on(oDiv,f3);
+
+    fire(oDiv);
+</script>  

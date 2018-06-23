@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$珠峰培训$</title>
+    <style type="text/less">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            width: 200px;
+            height: 200px;
+            background: palegoldenrod;
+            margin: auto;
+        }
+        #inp{
+            display: block;
+            width: 200px;
+            height: 50px;
+            margin: auto;
+        }
+    </style>
+    <script src="../js/less.js"></script>
+</head>
+<body>
+<div id='div1'>珠峰培训</div>
+<input type="text" id="inp">
+</body>
+</html>
+<script>
+    //0级事件  2级事件
+    //常用的0级事件
+    //mouse相关
+    //click  单击
+    //dblclick 双击
+    //mousedown 鼠标按下
+    //mousemove  鼠标移动
+    //mouseup  鼠标抬起
+    //mousewheel 鼠标滚轮
+    //mouseover  mouseout mousemove //有冒泡
+    //mouseenter mouseleave mousemove//没冒泡
+
+    //键盘事件
+    //keydown 键盘按下
+    //keyup 键盘抬起
+    //keypress
+    //键盘事件 body,document,html input
+
+    //input 事件
+    //onchange
+    //oninput
+
+    //系统事件
+    //load
+    //resize  窗口大小的改变
+
+    var inp = document.getElementById('inp');
+    // inp.onkeydown = function(e){
+    //     console.log(1,e)
+    //     e = e || window.event;
+    //     var tar = e.target || e.srcElement;
+    //     //tar 就是input 框
+    //     tar.value = '12';
+    // };
+    // inp.oninput = function (e) {
+    //     console.log(1,e)
+    //     e = e || window.event;
+    //     var tar = e.target || e.srcElement;
+    //     //tar 就是input 框
+    //     tar.value = '12';
+    // }
+    // inp.onkeyup = function (e) {
+    //     console.log(1,e)
+    //     e = e || window.event;
+    //     var tar = e.target || e.srcElement;
+    //     //tar 就是input 框
+    //     tar.value = '12';
+    // };
+    // inp.onchange = function (e) {
+    //     //失去焦点  并且内容改变
+    //     console.log('change',e)
+    // };
+    // inp.onblur = function (e) {
+    //     //失去焦点就触发
+    //     console.log('blur',e)
+    // };
+    // inp.onfocus = function (e) {
+    //     console.log('focus',e)
+    // }
+    //
+    // var oDiv = document.getElementById('div1');
+    // document.onkeydown = function (e) {
+    //     console.log(e)
+    // }
+
+
+    //需求 input只能输入数字
+    // inp.oninput = function (e) {
+    //     console.log(e)
+    //     var tar = e.target;
+    //     tar.value = tar.value.replace(/[^0-9]/g,'');
+    // }
+    inp.aaa = '';
+    //keydown ???
+    inp.onkeydown = function (e) {
+        var keyCode = e.keyCode;
+        var tar = e.target;
+        tar.value = tar.aaa;
+        if(keyCode >= 48 && keyCode <=57){
+            tar.aaa += e.key;
+        }
+        tar.value = tar.aaa;
+        console.log(222)
+    }
+
+
+
+    //2级事件
+    // oDiv.onclick =function () {
+    //     console.log(1)
+    // };
+    // oDiv.onclick =function () {
+    //     console.log(2)
+    // };
+    // oDiv.addEventListener('click',fn,false);
+    // oDiv.attachEvent('onclick',fn);
+    //咱们要去给一个元素绑定点击事件时；其他人已经再这个元素上绑定了点击事件；这时我们就需要用2级事件；或者再用一个盒子抱住要点击的元素；把绑定事件放到外层盒子上；
+
+    //事件冒泡
+    //点击： 点最表层的一个元素 他会一层一层的向上触发
+    //事件委托 就是利用的事件的冒泡；
+
+
+</script>  

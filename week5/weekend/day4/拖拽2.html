@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$珠峰培训$</title>
+    <style type="text/less">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .div1{
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            background: palegoldenrod;
+            border-radius: 50%;
+            cursor: move;
+            user-select: none;
+            position: absolute;
+            top:0;
+            left: 0;
+        }
+    </style>
+    <script src="../js/less.js"></script>
+</head>
+<body>
+<div class='div1'>珠峰培训1</div>
+<div class='div1'>珠峰培训2</div>
+</body>
+</html>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js
+"></script>
+<script src="../js/utils.js"></script>
+<script>
+    //划的快的时候会放生鼠标丢失
+    var oDiv = document.getElementsByClassName('div1')[0];
+    /*oDiv.onmousedown = function (e) {
+        // this -- > oDiv
+        this.startL = utils.css(this,'left');
+        this.startT = utils.css(this,'top');
+        this.canMove = true;
+        // startL = utils.css('left');
+        // startT = utils.css('top');
+        document.onmousemove = function (e) {
+            if(oDiv.canMove){
+                var l = e.clientX,t = e.clientY;
+                oDiv.style.left = l - oDiv.clientWidth/2+ 'px';
+                oDiv.style.top = t - oDiv.clientHeight/2 + 'px';
+            }
+        };
+    }*/
+    // document.onmousemove = function (e) {
+    //     if(oDiv.canMove){
+    //         var l = e.clientX,t = e.clientY;
+    //         oDiv.style.left = l - oDiv.clientWidth/2+ 'px';
+    //         oDiv.style.top = t - oDiv.clientHeight/2 + 'px';
+    //     }
+    // };
+
+    // oDiv.onmousedown = dragStart;
+    // document.getElementsByClassName('div1')[1].onmousedown = dragStart;
+
+
+    var $oDiv = $('.div1');
+    // $($oDiv[0])
+    // $oDiv.eq(0).on('mousedown',dragStart);
+    // $oDiv.eq(1).on('mousedown',dragStart);
+    $oDiv.on('mousedown',dragStart);
+
+
+
+    function dragStart(e) {
+        // this.startL = utils.css(this,'left');//getCss
+        this.startL = $(this).css('left');
+        // this.startT = utils.css(this,'top');
+        this.startT = $(this).css('top');
+        // startL = utils.css('left');
+        // startT = utils.css('top');
+        // document.onmousemove = dragMove.bind(this);
+        this.DragMove = dragMove.bind(this);
+        $(document).on('mousemove',this.DragMove);
+        //bind(this) --> 是把move中的this指向改成操作的元素
+        // document.onmouseup = dragEnd.bind(this);
+        this.DragEnd = dragEnd.bind(this);
+        $(document).on('mouseup',this.DragEnd);
+    }
+    function dragMove(e) {
+        var l = e.clientX,t = e.clientY;
+        // this.style.left = l - this.clientWidth/2+ 'px';
+        // this.style.top = t - this.clientHeight/2 + 'px';
+        this.prevX = this.prevX || 0;
+        this.speed = e.clientX - this.prevX//伪速度
+        this.prevX = e.clientX;
+        $(this).css({
+            left: l - this.clientWidth/2,
+            top: t - this.clientHeight/2
+        })
+    }
+    function dragEnd(e) {
+        // document.onmousemove = null;
+        $(document).off('mousemove',this.DragMove);
+        fly(this,this.speed);
+        drop(this);
+    }
+
+    //接下来 我们需要再松开手的时候让元素有一个减速的动效；
+    //
+    function fly(ele,speed) {
+        // console.log(ele,speed);
+        // console.log(11);
+        speed = speed * 0.98;
+        var l = utils.css(ele,'left');
+        var maxL = utils.win('clientWidth') - ele.clientWidth;
+        var minL = 0;
+
+        if(l >= maxL || l < minL){
+            speed *= -1;//speed = speed * -1;
+            // ele.style.left = maxL + 'px';
+        }
+        // else if(l <= minL){
+        //     speed *= -1;
+        //     // ele.style.left = 0;
+        // }
+        // var l = $(ele).css('left');
+        ele.style.left = l + speed + 'px';
+        ele.timer = window.setTimeout(function () {
+            fly(ele,speed);
+            if(Math.abs(speed) < 0.2){
+                window.clearTimeout(ele.timer)
+            }
+            // else {
+            //     fly(ele,speed);
+            // }
+        },20)
+        // if(Math.abs(speed) < 0.2){
+        //     window.clearTimeout(ele.timer)
+        // }
+
+    }
+    var speed = 0;
+    /*function drop(ele) {
+        window.clearTimeout(ele.timer2);
+        // var  t = utils.css(ele,'top');
+        if(!ele.dropSpeed){
+            ele.dropSpeed = 5
+        }else {
+            ele.dropSpeed += 5;
+        }
+        var t = ele.offsetTop;
+        var maxT = utils.win('clientHeight') - ele.clientHeight;
+        console.log(maxT)
+        // speed += 8;
+        var y = t + ele.dropSpeed;
+        if(y > maxT){
+            y = maxT;
+            ele.dropSpeed *= -1;
+        }
+
+        // console.log(speed);
+        ele.style.top = y + 'px';
+        ele.timer2 = window.setTimeout(function () {
+            drop(ele)
+        },20)
+    }*/
+    var flag = 0
+    function drop(ele) {
+        if(!ele.dropSpeed){
+            ele.dropSpeed = 5
+        }else {
+            ele.dropSpeed += 5;
+        }
+        // ele.dropSpeed *= 0.98;
+        var y = ele.offsetTop + ele.dropSpeed;
+        var maxT = document.documentElement.clientHeight - ele.clientHeight;
+        if(y >= maxT){
+            ele.dropSpeed *= -1;
+            y = maxT;
+            flag++
+        }else {
+            flag = 0
+        }
+        ele.style.top = y + 'px';
+        ele.dropTimer = window.setTimeout(function () {
+            drop(ele)
+        },20);
+        // console.log(flag);
+        if(flag >1){
+            window.clearTimeout(ele.dropTimer)
+        }
+    }
+</script>  

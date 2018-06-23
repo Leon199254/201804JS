@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$珠峰培训$</title>
+    <style type="text/less">
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #div1{
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        text-align: center;
+        background: palegoldenrod;
+        border-radius: 50%;
+        cursor: move;
+        user-select: none;
+        position: absolute;
+        top:0;
+        left: 0;
+    }
+</style>
+    <script src="../js/less.js"></script>
+</head>
+<body>
+<div id='div1'>珠峰培训</div>
+</body>
+</html>
+<script src="../js/utils.js"></script>
+<script src="./js/event.js"></script>
+<script src="js/drag.js"></script>
+<script>
+
+    window.onload = function () {
+        var oDiv = document.getElementById('div1');
+        on(oDiv,'mousedown',dragStart);
+
+
+        // on(oDiv,'myfly',fly);
+        // // on(oDiv,'myfly',drop);
+        // on(oDiv,'mydrop',drop);
+        // function fly(obj) {
+        //     ele = obj.ele;
+        //     speed = obj.speed;
+        //     speed = speed * 0.98;
+        //     var l = utils.css(ele,'left');
+        //     var maxL = utils.win('clientWidth') - ele.clientWidth;
+        //     var minL = 0;
+        //     if(l >= maxL || l < minL){
+        //         speed *= -1;
+        //     }
+        //     ele.style.left = l + speed + 'px';
+        //     ele.timer = window.setTimeout(function () {
+        //         fly({ele:ele,speed:speed});
+        //         if(Math.abs(speed) < 0.2){
+        //             window.clearTimeout(ele.timer)
+        //         }
+        //     },20)
+        //
+        // }
+        // function drop(obj) {
+        //     ele = obj.ele;
+        //     if(!ele.dropSpeed){
+        //         ele.dropSpeed = 5
+        //     }else {
+        //         ele.dropSpeed += 5;
+        //     }
+        //     ele.dropSpeed *= 0.98;
+        //     var y = ele.offsetTop + ele.dropSpeed;
+        //     var maxT = document.documentElement.clientHeight - ele.clientHeight;
+        //     if(y > maxT){
+        //         ele.dropSpeed *= -1;
+        //         y = maxT;
+        //         flag++
+        //     }else {
+        //         flag = 0
+        //     }
+        //     ele.style.top = y + 'px';
+        //     ele.dropTimer = window.setTimeout(function () {
+        //         drop({ele:ele})
+        //     },20);
+        //     // console.log(flag);
+        //     if(flag >1){
+        //         window.clearTimeout(ele.dropTimer)
+        //     }
+        // }
+    }
+
+</script>  
