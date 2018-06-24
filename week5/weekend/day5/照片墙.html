@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$珠峰培训$</title>
+    <style type="text/less">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            width: 630px;
+            margin: auto;
+            .imgBox{
+                list-style: none;
+                overflow: hidden;
+                width: 100%;
+                height: 850px;
+                background: #9aec7f;
+                padding: 10px 0 0 10px;
+                position: relative;
+                li{
+                    float: left;
+                    width: 200px;
+                    height: 200px;
+                    margin:0 10px 10px 0;
+                    background: palegoldenrod;
+                    img{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    </style>
+    <script src="../js/less.js"></script>
+</head>
+<body>
+<div id='div1'>
+    <ul class="imgBox">
+        <li><img src="./img/1.png" alt=""></li>
+        <li><img src="./img/2.png" alt=""></li>
+        <li><img src="./img/3.png" alt=""></li>
+        <li><img src="./img/4.png" alt=""></li>
+        <li><img src="./img/5.png" alt=""></li>
+        <li><img src="./img/6.png" alt=""></li>
+        <li><img src="./img/7.png" alt=""></li>
+        <li><img src="./img/8.png" alt=""></li>
+        <li><img src="./img/9.png" alt=""></li>
+        <li><img src="./img/10.png" alt=""></li>
+        <li><img src="./img/11.png" alt=""></li>
+        <li><img src="./img/12.png" alt=""></li>
+    </ul>
+</div>
+</body>
+</html>
+<script>
+    //1、第一步要实现可以拖动元素---》拖动元素是改变的元素的top、left值，那么就需要我们给元素加定位
+    // 加定位，怎么加能让元素还在当前位置，而且还有了定位？？ 我们要给li做定位，需要上级盒子就是ul 所以给ul加了一个相对定位（relative）
+    //我们根据每一个LI 当前位置 来决定他的定位（top,left 值）
+
+    var oLis = document.getElementsByTagName('li');
+    var ary = [];
+    [...oLis].forEach((item)=>{
+        let l = item.offsetLeft,t = item.offsetTop;
+        // item.style.position = 'absolute';
+        // item.style.left = l + 'px';
+        // item.style.top = t + 'px';
+        //再循环的时候，每进来一项，该项都会脱离文档流，脱离文档流后，导致后边的项自动补全到该项的位置；这时，下一项再进来时，位置已经跑了该项的位置；
+
+        //为了解决上边这问题，我们有两种解决方案
+        //方案1
+        let obj = {l:l,t:t};
+        ary.push(obj);
+    });
+    console.log(ary);
+    [...oLis].forEach((item,index)=>{
+        item.style.position = 'absolute';
+        item.style.left = ary[index].l + 'px';
+        item.style.top = ary[index].t + 'px';
+        item.style.margin = 0;
+    })
+</script>  

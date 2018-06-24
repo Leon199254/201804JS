@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$珠峰培训$</title>
+    <style type="text/less">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            width: 630px;
+            margin: auto;
+            .imgBox{
+                list-style: none;
+                /*overflow: hidden;*/
+                width: 100%;
+                height: 850px;
+                background: #9aec7f;
+                padding: 10px 0 0 10px;
+                position: relative;
+                li{
+                    float: left;
+                    width: 200px;
+                    height: 200px;
+                    margin:0 10px 10px 0;
+                    background: palegoldenrod;
+                    img{
+                        width: 100%;
+                    }
+                }
+                li.move{
+                    transition: all 1s ease-in;
+                }
+            }
+        }
+    </style>
+    <script src="../js/less.js"></script>
+</head>
+<body>
+<div id='div1'>
+    <ul class="imgBox">
+        <li><img src="./img/1.png" alt=""></li>
+        <li><img src="./img/2.png" alt=""></li>
+        <li><img src="./img/3.png" alt=""></li>
+        <li><img src="./img/4.png" alt=""></li>
+        <li><img src="./img/5.png" alt=""></li>
+        <li><img src="./img/6.png" alt=""></li>
+        <li><img src="./img/7.png" alt=""></li>
+        <li><img src="./img/8.png" alt=""></li>
+        <li><img src="./img/9.png" alt=""></li>
+        <li><img src="./img/10.png" alt=""></li>
+        <li><img src="./img/11.png" alt=""></li>
+        <li><img src="./img/12.png" alt=""></li>
+    </ul>
+</div>
+</body>
+</html>
+<script src="js/animate.js"></script>
+<script src="../js/utils.js"></script>
+<script src="./js/event.js"></script>
+<script src="js/drag.js"></script>
+<script>
+    //1、第一步要实现可以拖动元素---》拖动元素是改变的元素的top、left值，那么就需要我们给元素加定位
+    // 加定位，怎么加能让元素还在当前位置，而且还有了定位？？ 我们要给li做定位，需要上级盒子就是ul 所以给ul加了一个相对定位（relative）
+    //我们根据每一个LI 当前位置 来决定他的定位（top,left 值）
+
+    var oLis = document.getElementsByTagName('li');
+    // [...oLis].reverse().forEach((item)=>{
+    //     let l = item.offsetLeft,t = item.offsetTop;
+    //     item.style.position = 'absolute';
+    //     item.style.left = l + 'px';
+    //     item.style.top = t + 'px';
+    //     item.style.margin = 0;
+    // });
+    for(var i = oLis.length - 1; i >= 0 ; i--){
+        let item = oLis[i];
+        let l = item.offsetLeft,t = item.offsetTop;
+        item.style.position = 'absolute';
+        item.style.left = l + 'px';
+        item.style.top = t + 'px';
+        item.style.margin = 0;
+        on(item,'mousedown',dragStart);
+        //-->item.addEventListener('mousedown',dragStart,false)
+        // on(item,'myUpZ',upZIndex);
+        // on(item,'myDownZ',downZIndex);
+        on(item,'myAddZ',addZindex);
+        on(item,'myIsHit',isHit);
+        on(item,'myIsHit2',isHit2);
+        // on(item,'myGoback',goBack);
+        on(item,'myChange',changePosition)
+        // on(item,'myqqq',f2);
+        // on(item,'myqqq',f3);
+        // on(item,'myqqq',f4);
+        // on(item,'myqqq',f5);
+    }
+    //方案2
+    //利用 后边元素顶 为不会被前边元素 顶替--》所以我们 总后往前  设置定位
+
+
+    //下一步我们去实现拖拽
+    // var li = oLis[0];
+    // // li.addEventListener('mousedown',dragStart);
+    //实现发布订阅 与 拖拽的结合
+    // on(li,'mousedown',dragStart)
+
+    //下一步 我们要解决元素的zIndex问题；
+    //1、我们把拖拽的元素的zIndex提高，把其他的降低
+    // function upZIndex(obj) {//obj==>{ele:xxx}
+    //     obj.ele.style.zIndex = 10;
+    // }
+    // function downZIndex(ele){
+    //     this.style.zIndex = 1;//this -- >li
+    // }
+
+    //2、我们把拖动的元素的zIndex累加
+    var zIndex = 1;
+    function addZindex() {
+        this.style.zIndex = zIndex++;
+    }
+    // function f2() {
+    //     console.log(222)
+    // }
+    // function f3() {
+    //     console.log(333)
+    // }
+    // function f4() {
+    //     console.log(444)
+    // }
+    // function f5() {
+    //     console.log(555)
+    // }
+
+
+    //接下来我们去解决盒子碰撞的问题
+    //怎么判断 当前盒子是否跟其他盒子发生了碰撞？？
+    function isHit(obj) {
+        var ele = obj.ele;
+        var sl = ele.offsetLeft,//左上角到 参照物左边的距离
+            st = ele.offsetTop, //左上角到 参照物上边的距离
+            el = ele.offsetLeft + ele.clientWidth,// 右下角到 参照物左边的距离
+            et = ele.offsetTop + ele.clientHeight;//右下角到 参照物上边的距离
+        ele.hitAry = [];
+        for(var i = 0; i < oLis.length; i++){
+            var item = oLis[i];
+            if(item == ele)continue;
+            var i_sl = item.offsetLeft,
+                i_st = item.offsetTop,
+                i_el = item.offsetLeft + item.clientWidth,
+                i_et = item.offsetTop + item.clientHeight;
+            if(sl > i_el || st > i_et || el < i_sl || et < i_st){
+                //sl > i_el -- > 拖动的盒子 在 目标盒子的 右边
+                //st > i_et -- > 拖动的盒子 在 目标盒子的 下边
+                //el < i_sl -- > 拖动的盒子 在 目标盒子的 左边
+                //et < i_st -- > 拖动的盒子 在 目标盒子的 上边
+                item.style.background = '';
+            }else {
+                ele.hitAry.push(item);
+                item.style.background = 'pink';
+
+            }
+        }
+        console.log(ele.hitAry)
+    }
+    function isHit2() {
+        var sl = this.offsetLeft,
+            st = this.offsetTop,
+            el = this.offsetLeft + this.clientWidth,
+            et = this.offsetTop + this.clientHeight;
+        this.hitAry = [];
+        // console.log(1,this.hitAry)
+        for(var i = 0; i < oLis.length; i++){
+            var item = oLis[i];
+            if(item == this)continue;
+            var i_sl = item.offsetLeft,
+                i_st = item.offsetTop,
+                i_el = item.offsetLeft + item.clientWidth,
+                i_et = item.offsetTop + item.clientHeight;
+            if(sl > i_el || st > i_et || el < i_sl || et < i_st){
+                item.style.background = '';
+            }else {
+                this.hitAry.push(item);
+                item.style.background = 'pink';
+
+            }
+        }
+    }
+
+
+    //回到原位置
+    function goBack() {
+        animate(this,{
+            left:this.startL,
+            top:this.startT
+        },500,4);
+        // this.style.left = this.startL + 'px';
+        // this.style.top = this.startT + 'px';
+        // this.className = 'move';
+        // this.addEventListener('webkitTransitionEnd',function(){
+        //     this.className = '';
+        // },false);
+        // this.hitAry.forEach((item)=>{
+        //     item.style.background = '';
+        // })
+    }
+
+
+    //交换位置
+    function changePosition() {
+        this.hitAry = this.hitAry || [];
+        this.hitAry.forEach((item)=>{
+            //去计算 item 到  this 的 距离 ；最小的那个 就是重合度最高的那个
+            let t = item.offsetTop - this.offsetTop;
+            let l = item.offsetLeft - this.offsetLeft;
+            item.instance = Math.pow(t,2) + Math.pow(l,2);
+            item.style.background = '';//把发生碰撞的元素的背景颜色撤回
+        });
+        this.hitAry.sort((a,b)=>{
+            return a.instance - b.instance;
+        });
+
+        //我们发现当没有碰撞元素的时候会报错；所以我们处理数组为空的情概况
+        if(!this.hitAry.length){
+            //没有碰撞元素 this ---> 拖动的li
+            goBack.call(this);//把goBack中的this改成拖动的li
+        }else {
+            let cur = this.hitAry[0];
+            //让被拖动的元素 到 目标元素的位置
+            // this.style.left = cur.offsetLeft + 'px';
+            // this.style.top = cur.offsetTop + 'px';
+            animate(this,{
+                left:cur.offsetLeft,
+                top:cur.offsetTop
+            },500,4);
+            //让目标元素 到 被拖动元素 的位置
+            // cur.style.left = this.startL + 'px';
+            // cur.style.top = this.startT + 'px';
+            animate(cur,{
+                left:this.startL,
+                top:this.startT
+            },500,4);
+        }
+    }
+</script>  

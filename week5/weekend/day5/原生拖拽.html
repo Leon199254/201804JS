@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$珠峰培训$</title>
+    <style>
+        .tar{
+            width: 200px;
+            height: 50px;
+            border: 1px solid #ccc;
+            background: #9aec7f;
+            font-size: 20px;
+            color: #FFFFFF;
+        }
+        #div1{
+            width: 400px;
+            height: 400px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<div class="tar" draggable="true">拖动我</div>
+<div id='div1'>
+
+</div>
+</body>
+</html>
+<script>
+    var tar = document.getElementsByClassName('tar')[0];
+    var oDiv = document.getElementById('div1');
+    tar.ondragstart = function (e) {
+        console.log(e)
+    };
+    tar.ondragend = function (e) {
+        console.log(e);
+        oDiv.style.background = '';
+    };
+
+
+    oDiv.ondragenter = function (e) {
+        console.log('enter')
+        this.style.background = '#ccc';
+    };
+    oDiv.ondragleave = function (e) {
+        this.style.background = '';
+    };
+    oDiv.ondragover = function (e) {
+        e.preventDefault();
+    };
+    oDiv.ondrop = function (e) {
+        e.preventDefault();
+        console.log(e.dataTransfer.files);
+        var file = e.dataTransfer.files[0];
+        var name = file.name;
+        var type = file.type;
+        if(!/image\/\w+/.test(type))return;
+        var url = window.URL.createObjectURL(file);
+        this.innerHTML = `<img src="${url}"><p>${name}</p>`;
+        console.log(url);
+        // var reader = new FileReader();
+        // reader.readAsDataURL(file);//把图片转成base64
+        // reader.onload = (e)=>{
+        //     console.log(e.target.result);
+        //     this.innerHTML = `<img src="${e.target.result}"><p>${name}</p>`;
+        // }
+        console.log(name,type)
+    }
+
+</script>  

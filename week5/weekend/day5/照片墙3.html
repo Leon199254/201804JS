@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$珠峰培训$</title>
+    <style type="text/less">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .picBox{
+            position: relative;
+            width: 160*3px;
+            height: 160*4px;
+            margin: auto;
+            list-style: none;
+            background: paleturquoise;
+            border: 1px solid #ccc;
+            padding: 5px;
+            li{
+                float: left;
+                width: 150px;
+                height: 150px;
+                background: papayawhip;
+                margin: 5px;
+                cursor: move;
+                user-select: none;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    user-select: none;
+                }
+            }
+        }
+    </style>
+    <script type="text/javascript" src="../../js/less.js"></script>
+</head>
+<body>
+<div id='div1'>珠峰培训</div>
+<ul class="picBox">
+    <li class="pic"><img src="./img/1.png" alt=""></li>
+    <li class="pic"><img src="./img/2.png" alt=""></li>
+    <li class="pic"><img src="./img/3.png" alt=""></li>
+    <li class="pic"><img src="./img/4.png" alt=""></li>
+    <li class="pic"><img src="./img/5.png" alt=""></li>
+    <li class="pic"><img src="./img/6.png" alt=""></li>
+    <li class="pic"><img src="./img/7.png" alt=""></li>
+    <li class="pic"><img src="./img/8.png" alt=""></li>
+    <li class="pic"><img src="./img/9.png" alt=""></li>
+    <li class="pic"><img src="./img/10.png" alt=""></li>
+    <li class="pic"><img src="./img/11.png" alt=""></li>
+    <li class="pic"><img src="./img/12.png" alt=""></li>
+</ul>
+</body>
+</html>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js
+"></script>
+<script src="./js/dragEvent.js"></script>
+<script>
+    let lis = document.getElementsByTagName('li');
+    function posiInit() {
+        // [...lis].forEach((item)=>{
+        //     let x = item.offsetLeft,y = item.offsetTop;
+        //     console.log(x,y);
+        //     item.style.left = x + 'px';
+        //     item.style.top = y + 'px';
+        //     // item.style.position = 'absolute';
+        // })
+        //上边的这种作法会造成所有的元素都在第一个位置。因为咱们再设置了第一个为absolute之后，他就脱离了文档流，导致下一个li直接跑到了上一个的位置；所以我们要倒着来
+        [...lis].reverse().forEach((item)=>{
+            let x = item.offsetLeft,y = item.offsetTop;
+            // item.style.left = x + 'px';
+            // item.style.top = y + 'px';
+            $(item).animate({left:x,top:y});
+            item.style.position = 'absolute';
+            item.style.margin = 0;
+            new Drag(item).on(item,'myZindex',addIndex).on(item,'myIsHit',isHit).on(item,'myChangePosi',changePosi)
+        })
+    }
+    posiInit();
+
+
+    //2、接下来我们改变被拖动元素的Zindex
+    var zIndex = 1;
+    function addIndex() {
+        this.style.zIndex = zIndex++;
+    }
+
+    //3、接下来我们去处理碰撞的问题
+
+    function isHit(e) {
+        // console.log(this,e);
+        /*//怎么判断是否碰上？*/
+        this.hitAry = [];
+        [...lis].forEach((item)=>{
+            if(item == this)return;//是自己就不判断 直接退出
+            this.el = this.offsetLeft + this.clientWidth;
+            this.et = this.offsetTop + this.clientHeight;
+            this.sl = this.offsetLeft;
+            this.st = this.offsetTop;
+
+            item.el = item.offsetLeft + item.clientWidth;
+            item.et = item.offsetTop + item.clientHeight;
+            item.sl = item.offsetLeft;
+            item.st = item.offsetTop;
+            if(item.sl > this.el || item.st > this.et || item.et < this.st || item.el < this.sl){
+                //这说明没碰上
+                item.style.background = '';
+            }else {
+                this.hitAry.push(item);
+                item.style.background = 'pink';
+            }
+        })
+    }
+
+    //4、接下来我们要处理松开鼠标时 盒子应该进行的动作 -->换位置
+    function changePosi() {
+        //this.hitAry中存储的是跟当前盒子放生碰撞的其他盒子
+
+        //我们需要看数组是否为空
+        if(this.hitAry.length){
+            for(let i = 0; i < this.hitAry.length; i++){
+                let cur = this.hitAry[i];
+                cur.instance = Math.pow(cur.offsetLeft-this.offsetLeft,2)+Math.pow(cur.offsetTop-this.offsetTop,2);
+                cur.style.background = '';
+            }
+            this.hitAry.sort((a,b)=>{
+                return a.instance - b.instance;
+            });
+            let item = this.hitAry[0];
+            // this.style.left = item.offsetLeft + 'px';
+            // this.style.top = item.offsetTop + 'px';
+            // item.style.left = this.sx + 'px';
+            // item.style.top = this.sy + 'px';
+            $(this).animate({left:item.offsetLeft,top:item.offsetTop});
+            $(item).animate({left:this.sx,top:this.sy})
+        }else {
+            // this.style.left = this.sx + 'px';
+            // this.style.top = this.sy + 'px';
+            $(this).animate({left:this.sx,top:this.sy})
+        }
+        //我们接下来需要判断谁离目标盒子的距离最近 我们就让谁跟当前盒子交换位置
+
+        //这时我们发现 撒手后碰撞的盒子背景颜色没有改变；
+    }
+
+</script>  
