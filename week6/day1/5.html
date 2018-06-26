@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        /*@media all and (orientation: landscape) {!*横着的*!
+            #div1{
+                background: green;
+            }
+        }
+        @media all and (orientation: portrait) {!*竖着的*!
+            #div1{
+                background: purple;
+            }
+        }*/
+        @media all and (max-width:600px) {/*窗口的宽度小于等于600时*/
+            #div1{
+                background: pink;
+            }
+        }
+       @media all and (min-width:320px ) and (max-width: 414px)  {/*窗口的宽度大于等于320，小于等于414设备满足条件*/
+             #div1{
+                 background: green;
+             }
+         }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>

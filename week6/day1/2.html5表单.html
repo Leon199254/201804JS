@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        /*#text:valid{  !*没有输入或验证通过时样式起作用*!
+            border:5px solid green;
+        }
+        #text:invalid{
+            border:5px solid red;
+        }*/
+        /*#text:valid + span:before{
+            content:"输入正确";
+            color:green
+        }
+        #text:invalid + span:before{
+            content:"输入错误";
+            color: red;
+        }*/
+    </style>
+</head>
+<body>
+<form action="">
+    <!--<input type="email">-->
+    <!--设置输入前默认提前，当输入时提醒信息消失-->
+   <!-- <input type="text" name="xm" placeholder="请输入姓名" autofocus required pattern="\d{2}" id="text">-->
+    <!--键盘事件在移动端不起作用，当输入时触发oninput事件-->
+    <input type="text" name="xm" placeholder="请输入姓名"  id="text" pattern="\d{2}">
+    <span id="span1"></span>
+    <button id="btn">提交</button>
+</form>
+</body>
+</html>
+<script>
+    var oText = document.getElementById("text");
+    //验证不通过时触发invalid事件
+   /* oText.addEventListener("invalid",function(){
+       alert("验证不通过")
+    },false)*/
+    var oSpan1 = document.getElementById("span1");
+    oText.oninput = function(){//输入时触发
+        //console.log(this.validity.typeMismatch);
+        if(this.checkValidity()){//true 验证通过 false 验证没有通过
+            //oSpan1.innerHTML = "验证通过"
+        }else{
+            //oSpan1.innerHTML = "验证不通过"
+        }
+    };
+    var btn = document.getElementById("btn");
+    btn.onclick = function(){//手机上再试一下
+        if(oText.checkValidity()){
+            oText.setCustomValidity("");
+        }else{
+            oText.setCustomValidity("请输入两位的数字");
+        }
+    }
+    /*
+    只能验证类型（type） 类型不对 this.validity.typeMismatch 值为true
+    *没有输入内容时(required) this.validity.valueMissing  值true
+    *正则不匹配(pattern)   this.validity.patternMismatch  值为true
+    *
+    * */
+</script>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+           /* -o-transition:width 1s ease,height 1s 1s;
+            -ms-transition:width 1s ease,height 1s 1s;
+            -moz-transition:width 1s ease,height 1s 1s;
+            -webkit-transition:width 1s ease,height 1s 1s; */
+            /*transition:width 1s ease,height 1s 1s; */
+
+            -webkit-transition: width 1s ease;
+            transition:width 1s ease; /*执行两次*/
+        }
+        #div1:hover{
+            width:600px;
+           /* height: 300px;*/
+
+        }
+
+        /*1.先确定对哪个属性起作用
+        2.属性的起始值和结束值
+        3.transition属性放在的位置*/
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+    //动画执行后触发的事件：transitionend webkitTransitionEnd
+    var oDiv = document.getElementById("div1");
+    oDiv.addEventListener("webkitTransitionEnd",function(){
+        console.log(1);
+    })
+
+</script>
