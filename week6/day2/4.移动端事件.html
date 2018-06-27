@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            transform: translate(10px,20px);
+
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+    //click 300ms延迟问题
+    //单指事件
+    //touchstart 触摸开始时
+    //touchmove  触摸移动时
+    //touchend   离开屏幕时
+
+    var oDiv = document.getElementById("div1");
+    var startX = 0;
+    var startY = 0;
+    var flag = false;//是点击还是移动 不移动只点击只会触发touchstart和touchend事件，不会触发touchmove
+    oDiv.addEventListener("touchstart",function(e){
+        //e.touches 触摸点集合
+        //e.touches[0] 某个触摸点的详细信息
+       this.downX = e.touches[0].clientX;
+       this.downY = e.touches[0].clientY;
+    },false);
+    oDiv.addEventListener("touchmove",function(e){
+        flag = true;
+        e.preventDefault();//阻止页面默认滚动的行为
+       var moveX = e.touches[0].clientX;
+       var moveY = e.touches[0].clientY;
+       //moveX>0 往右  moveX<0往左  moveY>0 往下  moveY<0 往上
+       this.posX = moveX - this.downX; //横向移动的距离
+       this.posY = moveY - this.downY;//纵向移动的距离
+       this.style.webkitTransform = "translate("+(startX+this.posX)+"px,"+(startY+this.posY)+"px)";
+    },false);
+    oDiv.addEventListener("touchend",function(e){
+        //触摸结束时记录下当前位置
+        if(flag){
+            startX+=this.posX;
+            startY+=this.posY;
+            flag = false;
+        }
+
+    },false);
+
+</script>
