@@ -14,7 +14,9 @@
         *{
             margin:0;
             padding:0;
+            touch-action: none;
         }
+
         ul{
             list-style: none;
         }
@@ -135,7 +137,7 @@
         e.preventDefault();
         var moveX  = e.touches[0].clientX;
         var moveY = e.touches[0].clientY;
-        posX = (moveX - downX)*0.5; 
+        posX = (moveX - downX)*0.5;
         posY = (downY - moveY)*0.5;
         if(startY+posY>70){
             posY =-startY+ 70;
