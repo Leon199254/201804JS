@@ -1,0 +1,212 @@
+@import (reference) "public";
+*{
+  margin:0;
+  padding:0;
+}
+ul{
+  list-style: none;
+}
+html,body,.main{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family:"Microsoft yahei";
+}
+.load{
+  display: none;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  .pos(@zIndex: 10);
+  header{
+    width: 100%;
+    .pos(@top:25%);
+    font-size: 0.5rem;
+    text-align: center;
+    color: @color-white;
+    h3{
+      font-size: 0.35rem;
+      padding: 0.1rem;
+    }
+  }
+  .progressBar{
+    width: 80%;
+    margin: 0 10%;
+    height: 0.4rem;
+    background: @color-white;
+    border-radius: 0.1rem;
+    .pos(@bottom: 45%);
+    overflow: hidden;
+    .progress{
+      width:0%;
+      height: 0.4rem;
+      background-image: -webkit-linear-gradient(45deg,#6faa6d 0%,#6faa6d 25%,#77e570 25%,#77e570 50%,#6faa6d 50%,#6faa6d 75%,#77e570 75%, #77e570 100%);
+      background-image: linear-gradient(45deg,#6faa6d 0%,#6faa6d 25%,#77e570 25%,#77e570 50%,#6faa6d 50%,#6faa6d 75%,#77e570 75%, #77e570 100%);
+      background-size:0.4rem 0.4rem;
+      background-repeat: repeat-x;
+    }
+  }
+}
+.phone{
+  display: none;
+  width: 100%;
+  height: 100%;
+  background: url("@{url}/phone-bg.jpg") no-repeat;
+  background-size:100% 100%;
+  .pos(@zIndex: 9);
+  .phone-name{
+    width: 2.62rem;
+    height: 1.15rem;
+    background: url("@{url}/phone-name.png") no-repeat;
+    background-size:2.62rem 1.15rem ;
+    .pos(@left:50%;@top: 0.5rem);
+    margin-left: -1.31rem;
+  }
+  .phone-listen{
+    width: 5.2rem;
+    height: 3.6rem;
+    background: url("@{url}/phone-listen.png") no-repeat;
+    background-size:5.2rem 3.6rem;
+    .pos(@left: 50%,@bottom: 0);
+    margin-left: -2.6rem;
+    .touch{
+      width: 1.7rem;
+      height: 1.7rem;
+      .pos(@top:1.43rem;@left:3.58rem;@zIndex: 2);
+    }
+    .phone-arc{
+      .touch;
+      border:0.03rem solid #00e565;
+      border-radius: 50%;
+      z-index: -1;
+      -webkit-animation:move 0.5s infinite both;
+      animation:move 0.5s infinite both;
+    }
+  }
+  .phone-text{
+    display: none;
+    font-size: 0.3rem;
+    letter-spacing: 0.05rem;
+   .pos(@top:1.7rem);
+    width: 100%;
+    text-align: center;
+    color: @color-white;
+  }
+  .phone-key{
+    width: 5.2rem;
+    height: 6.59rem;
+    background: url("@{url}/phone-key.png") no-repeat;
+    background-size:5.2rem 6.59rem;
+    .pos(@left:50%;@bottom: 0);
+    margin-left: -2.6rem;
+    .css3(transform,translate(0,6.59rem));
+    .css3(transition,1s);
+    .phone-refuse{
+      width: 1.7rem;
+      height: 1.7rem;
+      .pos(@left:50%;@bottom: 0.3rem);
+      margin-left: -0.85rem;
+    }
+  }
+}
+.msg{
+  width: 100%;
+  height: 100%;
+  .pos(@zIndex: 8);
+  background: #eee;
+  ul{
+    margin-top: 0.1rem;
+    li{
+      max-width: 3.6rem;
+      padding:0.25rem;
+      font-size: 0.26rem;
+      margin-bottom: 0.4rem;
+      border-radius: 0.1rem;
+      position: relative;
+      img{
+        width: 0.82rem;
+        height: 0.82rem;
+        border-radius: 50%;
+        .pos(@top: 0)
+      }
+      .arrow{
+        width: 0.1rem;
+        height: 0.2rem;
+        .pos(@top:0.2rem);
+      }
+      &.left{
+        float: left;
+        left:1.25rem;
+        border:0.01rem solid #cacaca;
+        background:@color-white;
+        .arrow{
+          left:-0.1rem;
+          background: url("@{url}/message-arrow1.png") no-repeat;
+          background-size:0.1rem 0.2rem;
+        }
+        img{
+          left:-1rem;
+        }
+      }
+      &.right{
+        float: right;
+        right:1.25rem;
+        border:0.01rem solid #93b474;
+        background: #a0e55f;
+        .arrow{
+          right:-0.1rem;
+          background: url("@{url}/message-arrow2.png") no-repeat;
+          background-size:0.1rem 0.2rem;
+        }
+        img{
+          right: -1rem;
+        }
+      }
+
+    }
+  }
+  .keybord{
+    width: 6.4rem;
+    height:5.16rem;
+    background: url("@{url}/message-keyboard.png") no-repeat;
+    background-size:6.4rem 5.16rem;
+    .pos(@left:50%,@bottom: 0);
+    .css3(transform,translate(0,4.16rem));
+    .css3(transition,1s);
+    margin-left: -3.2rem;
+    .text{
+      width: 4rem;
+      height: 0.4rem;
+      .pos(@top:0.35rem;@left:0.9rem);
+      font-size: 0.25rem;
+    }
+    .btn{
+      width: 1.47rem;
+      height: 0.74rem;
+      background: url("@{url}/message-chatBtn.png") no-repeat;
+      background-size:1.47rem 0.74rem;
+      .pos(@right: 0.1rem;@bottom:0.6rem);
+    }
+  }
+}
+@-webkit-keyframes move {
+  0%{
+    .css3(transform,scale(1.2));
+  }
+  100%{
+    .css3(transform,scale(0.8));
+  }
+}
+@keyframes move {
+  0%{
+    .css3(transform,scale(1.2));
+  }
+  100%{
+    .css3(transform,scale(0.8));
+  }
+}
+
+
+
+
+

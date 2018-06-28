@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet/less" href="css/index.less">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script>
+        var less = {
+            env:"development",
+            poll:1000
+        }
+    </script>
+    <script src="js/less-2.5.3.min.js"></script>
+    <script>
+        less.watch();
+        //移动适配的JS代码
+        ~(function(desW){
+            let winW = document.documentElement.clientWidth;
+            //desW/100 = winW/fs;
+            document.documentElement.style.fontSize = winW/desW*100+"px";
+        })(640);
+    </script>
+</head>
+<body>
+    <article class="main">
+        <section class="load">
+            <header>
+                <h1>珠峰培训</h1>
+                <h3>H5场景的交互型简历</h3>
+            </header>
+            <div class="progressBar">
+                <div class="progress"></div>
+            </div>
+        </section>
+        <section class="phone">
+            <header class="phone-name"></header>
+            <div class="phone-listen">
+                <div class="phone-arc"></div>
+                <div class="touch"></div>
+            </div>
+            <div class="phone-text">00:00</div>
+            <div class="phone-key">
+                <div class="phone-refuse"></div>
+            </div>
+        </section>
+        <section class="msg">
+            <ul>
+                <li class="left">
+                    <div class="arrow"></div>
+                    <img src="images/message-head1.png" alt="">
+                    面试官您好，我叫XXX，来自于北京，2018年毕业于XXX院校，学习的是XXX专业，到目前位置工作3年
+                </li>
+                <li class="right">
+                    <div class="arrow"></div>
+                    <img src="images/message-head2.png" alt="">
+                    哇塞！好牛X啊！介绍一下自己的专业技能吧！
+                </li>
+               <!-- <li class="left">
+                    <div class="arrow"></div>
+                    <img src="images/message-head1.png" alt="">
+                    本人擅长：原生JS、ES6、Promise等设计模式、组件和插件封装，看过JQ源码，可以开发各种Hybrid混合APP...
+                </li>
+                <li class="right btnMsg">
+                    <div class="arrow"></div>
+                    <img src="images/message-head2.png">
+                    我们现在使用的是VUE和REACT
+                </li>
+                <li class="left">
+                    <div class="arrow"></div>
+                    <img src="images/message-head1.png" alt="">
+                    之前的公司使用的是REACT开发，个人对于REACT渲染原理、MVC模式、SPA单页面应用、DIFF差异渲染机制以及REDUX原理等都有研究，掌握的很熟练，对于VUE之前也做过，如果公司需要可以快速入手
+                </li>
+
+                <li class="right">
+                    <div class="arrow"></div>
+                    <img src="images/message-head2.png">
+                    webpack会吗？
+                </li>
+                <li class="left">
+                    <div class="arrow"></div>
+                    <img src="images/message-head1.png" alt="">
+                    之前项目都是基于脚手架完成的，自己偶尔去修改一些webpack配置项，不过目前正在深入研究，可以搭建简单的脚手架
+                </li>
+                <li class="left">
+                    <div class="arrow"></div>
+                    <img src="images/message-head1.png">
+                    同时对于NODE/EXPRESS等后台开发也有所涉猎，只是没有应用到项目实战中，目前也正在研究，对这个比较感兴趣
+                </li>
+                <li class="right">
+                    <div class="arrow"></div>
+                    <img src="images/message-head2.png">
+                    你认为你的优点在于哪？和其他人对比，公司为啥要录用你！
+                </li>
+                <li class="left">
+                    <div class="arrow"></div>
+                    <img src="images/message-head1.png">
+                    肯吃苦、肯加班、能力高、要钱少...这些够吗?
+                </li>
+                <li class="right">
+                    <div class="arrow"></div>
+                    <img src="images/message-head2.png">
+                    来吧！我们需要你！
+                </li>-->
+            </ul>
+            <div class="keybord">
+                <div class="text"></div>
+                <div class="btn"></div>
+            </div>
+        </section>
+    </article>
+</body>
+</html>
+<script src="js/zepto.min.js"></script>
+<script src="js/index.js"></script>
