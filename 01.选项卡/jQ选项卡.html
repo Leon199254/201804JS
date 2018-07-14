@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>百度一下</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+<div id="box">
+    <div id="menu">
+        <span id="fmune">我的关注</span>
+        <span>推荐</span>
+        <span>导航</span>
+    </div>
+    <div id="center">
+        <div><img src="img/02.png" alt=""></div>
+        <div><img src="img/03.png" alt=""></div>
+        <div><img src="img/04.png" alt=""></div>
+    </div>
+</div>
+</body>
+</html>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script>
+
+    let $spans = $('#menu span');
+    let $centers = $('#center div');
+    //设置默认样式
+    $spans.eq(0).addClass('show');
+    $centers.eq(0).addClass('show');
+    //添加点击方法
+    $spans.on('click',function () {
+        console.log(this);
+        $(this).addClass('show').siblings().removeClass('show');
+        let $index = $(this).index();
+        console.log($($centers[$index]));
+        //$($centers[$index])=$centers.eq($index)
+        $centers.eq($index).addClass('show').siblings().removeClass('show');
+    });
+
+</script>
